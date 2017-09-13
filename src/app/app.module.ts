@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ToDosComponent } from './to-dos/to-dos.component';
 import { TodoDetailUpdateComponent } from './todo-detail-update/todo-detail-update.component';
+import { ToDoService } from './to-do.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { TodoDetailUpdateComponent } from './todo-detail-update/todo-detail-upda
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ToDoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
