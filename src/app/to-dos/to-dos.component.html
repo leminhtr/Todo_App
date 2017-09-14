@@ -9,4 +9,11 @@
 
 <!--[todo] = todo property of app-todo-detail component -> binded to the element selectedToDo-->
 <!-- <=> [todo] is a target binding property => must be input property in app-todo-detail component-->
-<app-todo-detail-update [todo]="selectedToDo"></app-todo-detail-update>
+<!--<app-todo-detail-update [todo]="selectedToDo"></app-todo-detail-update>-->
+
+<div *ngIf="selectedToDo">
+  <h2>
+    {{selectedToDo.task| uppercase}}
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>

@@ -10,7 +10,10 @@ export class ToDoService {
     return Promise.resolve(TODOS);
   }
 
-
+  getToDo(id: number): Promise<ToDo> {
+    return this.getToDos()
+      .then(todos => todos.find(todo => todo.id === id));
+  }
   constructor() { }
 
 }
