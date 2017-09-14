@@ -33,4 +33,13 @@ export class ToDosComponent implements OnInit {
     this.router.navigate(['/detail', this.selectedToDo.id]);
   }
 
+  add(task: string): void {
+    task = task.trim();
+    if (!task) { return; }
+    this.todoService.create(name)
+      .then(hero => {
+        this.todos.push(hero);
+        this.selectedToDo = null;
+      });
+  }
 }

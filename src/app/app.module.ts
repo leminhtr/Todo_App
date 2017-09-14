@@ -8,6 +8,9 @@ import { ToDosComponent } from './to-dos/to-dos.component';
 import { TodoDetailUpdateComponent } from './todo-detail-update/todo-detail-update.component';
 import { ToDoService } from './to-do.service';
 import {AppRoutingModule} from '../app-routing.module';
+import {HttpModule} from '@angular/http';
+import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import {AppRoutingModule} from '../app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
   providers: [ToDoService],
   bootstrap: [AppComponent]

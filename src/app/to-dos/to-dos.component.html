@@ -1,6 +1,13 @@
 <!--TO DO LIST -> a migrer vers to dos view-->
 <h2>My To Dos</h2>
 
+<div>
+  <label>To do task:</label> <input #todoTask />
+  <button (click)="add(todoTask.value); todoTask.value=''">
+    Add
+  </button>
+</div>
+
 <ul class="todos">
   <li *ngFor="let td of todos" [class.selected]="td === selectedToDo" (click)="onSelect(td)"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
     <span class="box">{{td.id}}</span> {{td.task}}
