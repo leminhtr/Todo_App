@@ -1,7 +1,6 @@
 <div *ngIf="todo">
   <h2>{{todo.task}} details !</h2>
   <div>
-    <!-- /!!\ BROKEN td1 attribute -->
     <label>id: </label> {{todo.id}}
   </div>
   <div>
@@ -9,5 +8,6 @@
     <input [(ngModel)]="todo.task" placeholder="To do"/>
   </div>
   <button (click)="goBack()">Back</button>
-</div>
   <button (click)="save()">Save</button>
+
+</div>

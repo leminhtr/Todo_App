@@ -36,9 +36,9 @@ export class ToDosComponent implements OnInit {
   add(task: string): void {
     task = task.trim();
     if (!task) { return; }
-    this.todoService.create(name)
-      .then(hero => {
-        this.todos.push(hero);
+    this.todoService.create(task)
+      .then(todo => {
+        this.todos.push(todo);
         this.selectedToDo = null;
       });
   }
