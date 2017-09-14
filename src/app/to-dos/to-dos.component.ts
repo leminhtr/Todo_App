@@ -52,4 +52,10 @@ export class ToDosComponent implements OnInit {
       });
   }
 
+  edit(task: string): void {
+    this.selectedToDo.task = task;
+  }
+  // edit(todo: ToDo): void {
+  //   this.todoService.update();
+  // }
 }

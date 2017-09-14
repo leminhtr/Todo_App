@@ -2,17 +2,25 @@
 <h2>My To Dos</h2>
 
 <div>
-  <label>To do task: </label> <input #todoTask placeholder="What do you want to do?"/>
+  <label>To do task: </label> <input #todoTask placeholder="What do you want to do?" (keyup.enter)="add(todoTask.value); todoTask.value=''" />
   <button (click)="add(todoTask.value); todoTask.value=''">
     Add
   </button>
 </div>
 
-<ul class="todos">
-  <li *ngFor="let td of todos" [class.selected]="td === selectedToDo" (click)="onSelect(td)"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
+<ul class="todos list-group">
+  <li *ngFor="let td of todos" class="list-group-item" [class.selected]="td === selectedToDo" (click)="onSelect(td)"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
+    <input type="checkbox"[(ngModel)]="td.IsCompleted" />
+
     <span class="box">{{td.id}}</span>
-    <span>{{td.task}}</span>
+
+    <span>{{td.task}} {{td.IsCompleted}}</span>
+    <div *ngIf="selectedToDo == td" class="clickOnEdit">
+      <input #tdtask placeholder="{{td.task}}" (keyup.enter)="edit(tdtask.value); " class="clickOnEdit"/>
+    </div>
     <button class="delete" (click)="delete(td); $event.stopPropagation()">x</button>
+    <!--<button class="edit" (click)="edit(td); ">edit</button>-->
+
   </li>
 </ul>
 
