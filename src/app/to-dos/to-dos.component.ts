@@ -42,4 +42,14 @@ export class ToDosComponent implements OnInit {
         this.selectedToDo = null;
       });
   }
+
+  delete(todo: ToDo): void {
+    this.todoService
+      .delete(todo.id)
+      .then(() => {
+        this.todos = this.todos.filter(t => t !== todo);
+        if (this.selectedToDo === todo) { this.selectedToDo = null; }
+      });
+  }
+
 }

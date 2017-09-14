@@ -2,7 +2,7 @@
 <h2>My To Dos</h2>
 
 <div>
-  <label>To do task: </label> <input #todoTask />
+  <label>To do task: </label> <input #todoTask placeholder="What do you want to do?"/>
   <button (click)="add(todoTask.value); todoTask.value=''">
     Add
   </button>
@@ -10,7 +10,9 @@
 
 <ul class="todos">
   <li *ngFor="let td of todos" [class.selected]="td === selectedToDo" (click)="onSelect(td)"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
-    <span class="box">{{td.id}}</span> {{td.task}}
+    <span class="box">{{td.id}}</span>
+    <span>{{td.task}}</span>
+    <button class="delete" (click)="delete(td); $event.stopPropagation()">x</button>
   </li>
 </ul>
 
