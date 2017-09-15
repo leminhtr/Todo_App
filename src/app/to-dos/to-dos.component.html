@@ -20,11 +20,12 @@
       <span>{{td.task}} {{td.IsCompleted}}</span>
       <div *ngIf="selectedToDo == td" class="clickOnEdit">
         <input #tdtask placeholder="{{td.task}}" (keyup.enter)="edit(tdtask.value); selectedToDo=null;" (keyup.esc)="selectedToDo=null;" class="clickOnEdit"/>
-        <button class="delete" (click)="delete(td); $event.stopPropagation()">x</button>
+        <button type="button" class="btn btn-danger btn-circle remove" (click)="delete(td); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
       </div>
-      <button class="delete" (click)="delete(td); $event.stopPropagation()">x</button>
       <div *ngIf="selectedToDo == null">
-      <button class="edit" (click)="edit(td);">edit</button>
+      <button class="edit btn btn-info btn-circle" (click)="edit(td);"> <i class="glyphicon glyphicon-edit"></i> </button>
+        <button type="button" class="btn btn-danger btn-circle remove" (click)="delete(td); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
+
       </div>
     </li>
   </ul>

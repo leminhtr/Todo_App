@@ -1,6 +1,6 @@
 .selected {
   background-color: #CFD8DC !important;
-  color: white;
+  color: black;
 }
 
 .selected span {
@@ -60,14 +60,16 @@
 /*}*/
 
 
-button.delete {
+.remove .edit {
   float:right;
-  /*margin-top: 2px;*/
-  /*margin-right: .8em;*/
-  background-color: gray !important;
+  margin-top: 2px;
+  margin-right: .8em;
+  //background-color: gray !important;
   color:white;
 }
-
+ .glyphicon-remove-circle{
+   background-color: orangered;
+ }
 
 /*button.edit {*/
   /*float:right;*/
@@ -87,15 +89,16 @@ button.delete {
 /*}*/
 
 .float-label-control { position: relative; margin-bottom: 1.5em; }
-.float-label-control ::-webkit-input-placeholder { color: darkgray; }
+.float-label-control ::-webkit-input-placeholder { color: darkgray;}
 .float-label-control :-moz-placeholder { color: darkgray; }
 .float-label-control ::-moz-placeholder { color: darkgray;; }
 .float-label-control :-ms-input-placeholder { color: darkgray; }
 .float-label-control input:-webkit-autofill,
-.float-label-control textarea:-webkit-autofill { background-color: transparent !important; -webkit-box-shadow: 0 0 0 1000px white inset !important; -moz-box-shadow: 0 0 0 1000px white inset !important; box-shadow: 0 0 0 1000px white inset !important; }
+.float-label-control textarea:-webkit-autofill {  -webkit-box-shadow: 0 0 0 1000px white inset !important; -moz-box-shadow: 0 0 0 1000px white inset !important; box-shadow: 0 0 0 1000px white inset !important; color: black !important;}
+/*.float-label-control textarea:-webkit-autofill {  -webkit-box-shadow: 0 0 0 1000px white inset !important; -moz-box-shadow: 0 0 0 1000px white inset !important; box-shadow: 0 0 0 1000px white inset !important; color: black !important;}*/
 .float-label-control input, .float-label-control textarea, .float-label-control label { font-size: 1.5em; box-shadow: none; -webkit-box-shadow: none; }
-.float-label-control input:focus,
-.float-label-control textarea:focus { box-shadow: none; -webkit-box-shadow: none; border-bottom-width: 2px; padding-bottom: 0; }
+.float-label-control input:focus {color: black !important;}
+.float-label-control textarea:focus { box-shadow: none; -webkit-box-shadow: none; border-bottom-width: 2px; padding-bottom: 0; color: black !important;}
 .float-label-control textarea:focus { padding-bottom: 4px; }
 .float-label-control input, .float-label-control textarea { display: inline-block; width: 75%; padding: 0.1em 0em 1px 0em; border: none; border-radius: 0px; border-bottom: 1px solid #aaa; outline: none; margin: 0px; background: none; }
 .float-label-control textarea { padding: 0.1em 0em 5px 0em; }
