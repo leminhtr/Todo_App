@@ -1,3 +1,16 @@
+/*.container{*/
+  /*vertical-align: middle;*/
+  /*horiz-align: middle;*/
+/*}*/
+.absolute-center {
+  max-width: 75%;
+  margin: auto;
+  vertical-align: middle;
+}
+/*.inputToDo{*/
+  /*margin: auto auto auto auto;*/
+/*}*/
+
 .selected {
   background-color: #CFD8DC !important;
   color: black;
