@@ -5,7 +5,7 @@ import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ToDosComponent } from './to-dos/to-dos.component';
-import { TodoDetailUpdateComponent } from './todo-detail-update/todo-detail-update.component';
+//import { TodoDetailUpdateComponent } from './todo-detail-update/todo-detail-update.component';
 import { ToDoService } from './to-do.service';
 import {AppRoutingModule} from '../app-routing.module';
 import {HttpModule} from '@angular/http';
@@ -16,7 +16,7 @@ import { InMemoryDataService } from './in-memory-data.service';
   declarations: [
     AppComponent,
     ToDosComponent,
-    TodoDetailUpdateComponent,
+    // TodoDetailUpdateComponent,
   ],
   imports: [
     BrowserModule,

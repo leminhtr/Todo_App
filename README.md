@@ -1,28 +1,58 @@
-# ToDoApp
+# TO DO APP
+Deployed on https://todoapp-practicev1.firebaseapp.com/ToDos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.1.
+## Objective:
+**Manage a list of to do**
 
-## Development server
+This project is structured in two _versions_.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## How to Use:
 
-## Code scaffolding
+### To Do App V1
+- Create a **To Do App** that allows basic **CRUD** operations.
+- Design the app using bootstrap.
+- The App simulate HTTP calls to fetch data in local using angular-in-memory-web-api.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Create:
+You may use the _return key_ or the button to create a todo.
+![](https://media.giphy.com/media/jd7vNrsp2P5gA/giphy.gif)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+#### Update: 
+You may use the _return key_ or the button to update a todo and the _esc_ key to cancel an update
+![](https://media.giphy.com/media/56F4NZT9XzloA/giphy.gif)
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+#### Delete:
+![](https://media.giphy.com/media/ujox5RTkZSTpS/giphy.gif)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
 
-## Further help
+### To Do App V2
+- Manage a list of **to dos** (e.g. shopping list, party project, ...)
+- The App simulate HTTP calls to fetch data in local using angular-in-memory-web-api.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## How to run:
+
+- Make sure you have a running version of Angular CLI 4
+
+
+### To Do App V1: Practice 1
+```
+git clone https://github.com/leminhtr/Todo_App.git
+cd Todo_App
+git checkout practice1
+ng serve -- open
+```
+
+### To Do App V2: Practice 2
+
+## Sources:
+https://angular.io/tutorial
+
+https://bootsnipp.com/snippets/featured/float-label-pattern-forms
+
+
+
+_Made with Angular CLI 4 & Bootstrap 4_

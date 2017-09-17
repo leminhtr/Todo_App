@@ -24,6 +24,7 @@
     "angular-in-memory-web-api": "^0.4.6",
     "bootstrap-material-design-icons": "^2.2.0",
     "core-js": "^2.4.1",
+    "mdbootstrap": "^4.4.1",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },

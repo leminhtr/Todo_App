@@ -29,9 +29,9 @@ export class ToDosComponent implements OnInit {
     this.getToDos();
   }
 
-  gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedToDo.id]);
-  }
+  // gotoDetail(): void {
+  //   this.router.navigate(['/detail', this.selectedToDo.id]);
+  // }
 
   add(task: string): void {
     task = task.trim();
@@ -55,7 +55,5 @@ export class ToDosComponent implements OnInit {
   edit(task: string): void {
     this.selectedToDo.task = task;
   }
-  // edit(todo: ToDo): void {
-  //   this.todoService.update();
-  // }
+
 }

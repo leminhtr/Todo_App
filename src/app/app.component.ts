@@ -11,7 +11,7 @@ import { ParamMap } from '@angular/router';
   providers: [ToDoService]
 })
 export class AppComponent implements OnInit {
-  title = 'My TODO App';
+  title = 'TODO App';
   constructor() { }
 
   ngOnInit() {

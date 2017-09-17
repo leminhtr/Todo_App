@@ -2,8 +2,9 @@
   /*vertical-align: middle;*/
   /*horiz-align: middle;*/
 /*}*/
+
 .absolute-center {
-  max-width: 75%;
+  max-width: 65%;
   margin: auto;
   vertical-align: middle;
 }
@@ -12,66 +13,55 @@
 /*}*/
 
 .selected {
-  background-color: #CFD8DC !important;
+  background-color: #f9f9f9 !important;
   color: black;
+  opacity: 100%;
 }
 
 .selected span {
   display: none;
+  opacity: 100%;
 }
 
 .selected li {
   display: none;
+  border-radius: 4px;
 }
 
 .selected .delete {
   display: none;
 }
-/*.todos {*/
+.todos {
+  font-family: Calligraffiti, Arial, Helvetica, sans-serif;
   /*margin: 0 0 2em 5em;*/
   /*list-style-type: none;*/
   /*padding: 0;*/
   /*width: 15em;*/
-/*}*/
-
-/*.todos li {*/
+}
+span:hover{
+  font-weight: bold;
+}
+.todos li {
   /*cursor: pointer;*/
+  /*font-family: Calligraffiti, Arial, Helvetica;*/
   /*position: relative;*/
   /*left: 0;*/
   /*background-color: #EEE;*/
   /*margin: .5em;*/
   /*padding: .3em 0;*/
   /*height: 1.6em;*/
-  /*border-radius: 4px;*/
-/*}*/
+  border-radius: 4px;
+}
+
 /*.todos li.selected:hover {*/
   /*background-color: #BBD8DC !important;*/
   /*color: white;*/
 /*}*/
-/*.todos li:hover {*/
-  /*color: #607D8B;*/
-  /*background-color: #DDD;*/
-  /*left: .1em;*/
-/*}*/
-/*.todos .text {*/
-  /*position: relative;*/
-  /*top: -3px;*/
-/*}*/
-/*.todos .box {*/
-  /*display: inline-block;*/
-  /*font-size: small;*/
-  /*color: white;*/
-  /*padding: 0.8em 0.7em 0 0.7em;*/
-  /*background-color: #607D8B;*/
-  /*line-height: 1em;*/
-  /*position: relative;*/
-  /*left: -1px;*/
-  /*top: -4px;*/
-  /*height: 1.8em;*/
-  /*margin-right: .8em;*/
-  /*border-radius: 4px 0 0 4px;*/
-/*}*/
-
+.todos li:hover {
+  font-weight: 600;
+  background-color: #f9f9f9;
+  left: .1em;
+}
 
 .remove .edit {
   float:right;
@@ -84,37 +74,27 @@
    background-color: orangered;
  }
 
-/*button.edit {*/
-  /*float:right;*/
-  /*margin-top: 2px;*/
-  /*margin-right: .8em;*/
-  /*background-color: gray !important;*/
-  /*color:white;*/
-/*}*/
-
-/*.checked{*/
-  /*background-color: green;*/
-/*}*/
-
-/*.clickOnEdit{*/
-  /*display: inline-block;*/
-  /*background-color: red;*/
-/*}*/
+#clickOnEdit{
+background-color: white;
+}
 
 .float-label-control { position: relative; margin-bottom: 1.5em; }
-.float-label-control ::-webkit-input-placeholder { color: darkgray;}
-.float-label-control :-moz-placeholder { color: darkgray; }
-.float-label-control ::-moz-placeholder { color: darkgray;; }
-.float-label-control :-ms-input-placeholder { color: darkgray; }
+.float-label-control ::-webkit-input-placeholder { color: gray;}
+.float-label-control :-moz-placeholder { color: gray; }
+.float-label-control ::-moz-placeholder { color: gray; }
+.float-label-control :-ms-input-placeholder { color: gray;}
+.float-label-control input:hover{background-color: #ffffff; border-radius: 7px;  font-family: Calligraffiti, Arial, Helvetica, sans-serif; color: black}
 .float-label-control input:-webkit-autofill,
 .float-label-control textarea:-webkit-autofill {  -webkit-box-shadow: 0 0 0 1000px white inset !important; -moz-box-shadow: 0 0 0 1000px white inset !important; box-shadow: 0 0 0 1000px white inset !important; color: black !important;}
 /*.float-label-control textarea:-webkit-autofill {  -webkit-box-shadow: 0 0 0 1000px white inset !important; -moz-box-shadow: 0 0 0 1000px white inset !important; box-shadow: 0 0 0 1000px white inset !important; color: black !important;}*/
-.float-label-control input, .float-label-control textarea, .float-label-control label { font-size: 1.5em; box-shadow: none; -webkit-box-shadow: none; }
+.float-label-control input, .float-label-control textarea, .float-label-control label { font-size: 1.5em; box-shadow: none; -webkit-box-shadow: none; font-family: Calligraffiti, Arial, Helvetica, sans-serif;}
 .float-label-control input:focus {color: black !important;}
 .float-label-control textarea:focus { box-shadow: none; -webkit-box-shadow: none; border-bottom-width: 2px; padding-bottom: 0; color: black !important;}
-.float-label-control textarea:focus { padding-bottom: 4px; }
+.float-label-control textarea:focus { padding-bottom: 4px; color: black; }
+.float-label-control textarea:hover { padding-bottom: 4px; color: black; }
 .float-label-control input, .float-label-control textarea { display: inline-block; width: 75%; padding: 0.1em 0em 1px 0em; border: none; border-radius: 0px; border-bottom: 1px solid #aaa; outline: none; margin: 0px; background: none; }
-.float-label-control textarea { padding: 0.1em 0em 5px 0em; }
+.float-label-control textarea { padding: 0.1em 0em 5px 0em;   font-family: Calligraffiti, Arial, Helvetica, sans-serif; color: black;
+}
 .float-label-control label { position: absolute; font-weight: normal; top: -1.0em; left: 0.08em; color: #aaaaaa; z-index: -1; font-size: 0.85em; -moz-animation: float-labels 300ms none ease-out; -webkit-animation: float-labels 300ms none ease-out; -o-animation: float-labels 300ms none ease-out; -ms-animation: float-labels 300ms none ease-out; -khtml-animation: float-labels 300ms none ease-out; animation: float-labels 300ms none ease-out; /* There is a bug sometimes pausing the animation. This avoids that.*/ animation-play-state: running !important; -webkit-animation-play-state: running !important; }
 .float-label-control input.empty + label,
 .float-label-control textarea.empty + label { top: 0.1em; font-size: 1.5em; animation: none; -webkit-animation: none; }
@@ -167,4 +147,8 @@
   font-size: 12px;
   line-height: 1.428571429;
   border-radius: 15px;
+}
+
+.btn-default{
+  background-color: #d1d1d1 !important;
 }
