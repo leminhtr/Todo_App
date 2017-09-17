@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ToDo } from '../to-do';
 import { ToDoService } from '../to-do.service';
 import {Router} from '@angular/router';
+import {ListToDo} from '../list-toDo';
 
 @Component({
   selector: 'app-to-dos',
@@ -13,13 +14,16 @@ export class ToDosComponent implements OnInit {
   todos: ToDo[];
   selectedToDo: ToDo;
 
-  constructor(
-    private router: Router,
-    private todoService: ToDoService) { }
+  @Input() listToDo: ListToDo;
+
+  constructor(private router: Router,
+              private todoService: ToDoService) {
+  }
 
   onSelect(todo: ToDo): void {
     this.selectedToDo = todo;
   }
+
   getToDos(): void {  // get data from ToDo service, using its method
     // sets the component's heroes property to the array of heroes returned by the service.
     this.todoService.getToDos().then(todos => this.todos = todos);
@@ -35,7 +39,9 @@ export class ToDosComponent implements OnInit {
 
   add(task: string): void {
     task = task.trim();
-    if (!task) { return; }
+    if (!task) {
+      return;
+    }
     this.todoService.create(task)
       .then(todo => {
         this.todos.push(todo);
@@ -48,12 +54,35 @@ export class ToDosComponent implements OnInit {
       .delete(todo.id)
       .then(() => {
         this.todos = this.todos.filter(t => t !== todo);
-        if (this.selectedToDo === todo) { this.selectedToDo = null; }
+        if (this.selectedToDo === todo) {
+          this.selectedToDo = null;
+        }
       });
   }
 
   edit(task: string): void {
     this.selectedToDo.task = task;
+  }
+
+
+  printMsg(s: string) {
+    console.log(s);
+  }
+
+  updateTask(todo: ToDo): void {
+    if (todo.IsCompleted === false) {
+      todo.IsCompleted = true;
+      // else
+      todo.IsCompleted = false;
+      for (let i = 0; i < this.todos.length; i++) {
+        if (todo.id === this.todos[i].id) {
+          this.listToDo.listToDo[i].IsCompleted = todo.IsCompleted;
+        }
+      }
+      this.todoService.updateList(this.listToDo).then(() => this.selectedToDo = null);
+    }
+
+
   }
 
 }

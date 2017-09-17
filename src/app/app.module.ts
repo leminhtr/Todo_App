@@ -2,10 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {ClickOutsideModule} from 'ng-click-outside';
 
 import { AppComponent } from './app.component';
 import { ToDosComponent } from './to-dos/to-dos.component';
-//import { TodoDetailUpdateComponent } from './todo-detail-update/todo-detail-update.component';
 import { ToDoService } from './to-do.service';
 import {AppRoutingModule} from '../app-routing.module';
 import {HttpModule} from '@angular/http';
@@ -25,7 +25,8 @@ import { ToDoManagerComponent } from './to-do-manager/to-do-manager.component';
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService)
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    ClickOutsideModule
   ],
   providers: [ToDoService],
   bootstrap: [AppComponent]

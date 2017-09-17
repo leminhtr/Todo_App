@@ -50,6 +50,11 @@ export class ToDoManagerComponent implements OnInit {
   }
 
 
+  saveList(): void {
+    this.todoService.updateList(this.selectedListToDo).then();
+  }
+
+
 
 
 
