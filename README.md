@@ -11,7 +11,7 @@ This project is structured in two _versions_.
 ### To Do App V1
 - Create a **To Do App** that allows basic **CRUD** operations.
 - Design the app using bootstrap.
-- The App simulate HTTP calls to fetch data in local using angular-in-memory-web-api.
+- The App simulate HTTP calls to fetch data in local using _angular-in-memory-web-api_.
 
 #### Create:
 You may use the _return key_ or the button to create a todo.
@@ -47,6 +47,12 @@ ng serve -- open
 ```
 
 ### To Do App V2: Practice 2
+```
+git clone https://github.com/leminhtr/Todo_App.git
+cd Todo_App
+git checkout practice2
+ng serve -- open
+```
 
 ## Sources:
 https://angular.io/tutorial
