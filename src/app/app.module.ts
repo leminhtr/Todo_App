@@ -11,11 +11,13 @@ import {AppRoutingModule} from '../app-routing.module';
 import {HttpModule} from '@angular/http';
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { ToDoManagerComponent } from './to-do-manager/to-do-manager.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToDosComponent,
+    ToDoManagerComponent,
     // TodoDetailUpdateComponent,
   ],
   imports: [
