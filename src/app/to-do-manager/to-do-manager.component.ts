@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {listToDo} from '../../list-toDo';
+import {ListToDo} from '../list-toDo';
 import {ToDoService} from '../to-do.service';
 import {ToDo} from '../to-do';
 
@@ -11,38 +11,38 @@ import {ToDo} from '../to-do';
 })
 export class ToDoManagerComponent implements OnInit {
 
-  ToDoManager: listToDo[];
-  selectedListToDo: listToDo;
+  ToDoManager: ListToDo[];  // List of list of ToDo
+  selectedListToDo: ListToDo;
 
   constructor(
     private todoService: ToDoService
   ) { }
 
   getToDoManager(): void {  // get data from ToDo service, using its method
-    // sets the component's heroes property to the array of heroes returned by the service.
     this.todoService.getToDoManager().then(TDManager => this.ToDoManager = TDManager);
   }
-  ngOnInit() {
+  ngOnInit(): void {
     this.getToDoManager();
   }
 
-  onSelect(listTD: listToDo): void {
+  onSelect(listTD: ListToDo): void {
     this.selectedListToDo = listTD;
   }
 
   addList(listName: string): void {
     listName = listName.trim();
     if (!listName) { return; }
-    this.todoService.createList(listName)
-      .then(listToDo => {
-        this.ToDoManager.push(listToDo);
+    this.todoService.createListToDo(listName) // if listName not empty then todoService creates a list and returns it as ListToDo
+      .then(ListToDo => {
+        ListToDo.listToDo = new Array<ToDo>();  // init the list
+        this.ToDoManager.push(ListToDo);  // add it to the ToDoManager
         this.selectedListToDo = null;
       });
   }
 
-  deleteList(list: listToDo): void {
+  deleteList(list: ListToDo): void {
     this.todoService
-      .delete(list.id)
+      .deleteListToDo(list.id)
       .then(() => {
         this.ToDoManager = this.ToDoManager.filter(l => l !== list);
         if (this.selectedListToDo === list) { this.selectedListToDo = null; }

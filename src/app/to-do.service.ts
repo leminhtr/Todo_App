@@ -4,6 +4,8 @@ import 'rxjs/add/operator/toPromise';
 import {ToDo} from './to-do';
 // import {TODOS} from './mock-todo';
 import {Http, Headers} from '@angular/http';
+import {ListToDo} from './list-toDo';
+import {toPromise} from "rxjs/operator/toPromise";
 
 @Injectable()
 export class ToDoService {
@@ -13,14 +15,6 @@ export class ToDoService {
   constructor(private http: Http) { }
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  update(todo: ToDo): Promise<ToDo> {
-    const url = `${this.todosUrl}/${todo.id}`;
-    return this.http
-      .put(url, JSON.stringify(todo), {headers: this.headers})
-      .toPromise()
-      .then(() => todo)
-      .catch(this.handleError);
-  }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
@@ -34,7 +28,8 @@ export class ToDoService {
     return this.http.get(this.todosUrl)
       .toPromise()
       .then(response => response.json().data as ToDo[])
-      .catch(this.handleError);  }
+      .catch(this.handleError);
+  }
 
   getToDo(id: number): Promise<ToDo> {
     const url = `${this.todosUrl}/${id}`;
@@ -58,4 +53,46 @@ export class ToDoService {
       .then(() => null)
       .catch(this.handleError);
   }
+
+  // ToDoManager CRUD methods
+  getToDoManager(): Promise<ListToDo[]> {
+    return this.http.get(this.todosUrl).toPromise()
+      .then(response => response.json().data as ListToDo[])
+      .catch(this.handleError);
+
+  }
+
+  getListToDo(id: number): Promise<ListToDo> {
+    const url = `${this.todosUrl}/${id}`;
+    return this.http.get(url)
+      .toPromise()
+      .then(response => response.json().data as ListToDo)
+      .catch(this.handleError);
+  }
+
+  createListToDo(listName: string): Promise<ListToDo> {
+    return this.http
+      .post(this.todosUrl, JSON.stringify({name: listName}), {headers: this.headers})
+      .toPromise()
+      .then(res => res.json().data as ListToDo)
+      .catch(this.handleError);
+  }
+
+  deleteListToDo(id: number): Promise<void> {
+    const url = `${this.todosUrl}/${id}`;
+    return this.http.delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null)
+      .catch(this.handleError);
+  }
+
+  updateList(list: ListToDo): Promise<ToDo> {
+    const url = `${this.todosUrl}/${list.id}`;
+    return this.http
+      .put(url, JSON.stringify(list), {headers: this.headers})
+      .toPromise()
+      .then(() => list)
+      .catch(this.handleError);
+  }
+
 }
