@@ -18,22 +18,32 @@
         <li *ngFor="let ltd of ToDoManager" class="list-group-item" [class.selected]="ltd === selectedListToDo" (click)="onSelect(ltd);" (keyup.enter)="onSelect(ltd);" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
           <!--<span class="box">{{td.id}}</span>-->
 
-          <div *ngIf="ltd.isAllDone" >
-            <del> <span class="listTDName" id="listDone">{{ltd.name | uppercase}}</span></del>
-          </div>
-          <div *ngIf="!ltd.isAllDone">
-          <span class="listTDName">{{ltd.name | uppercase}}</span>
-          </div>
+
           <!--Edit list name-->
 
-          <div *ngIf="selectedListToDo == null">
-            <button class="edit btn btn-info btn-circle blue-gradient"> <i class="glyphicon glyphicon-edit"></i> </button>
-            <button type="button" class="btn btn-danger btn-circle remove" (click)="deleteList(ltd); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
+
+            <div *ngIf="ltd.isAllDone==true" >
+              <del> <span class="listTDName" id="listDone">{{ltd.name | uppercase}} {{ltd.isAllDone}}</span></del>
+            </div>
+            <div *ngIf="ltd.isAllDone==false">
+              <span class="listTDName">{{ltd.name | uppercase}} {{ltd.isAllDone}}</span>
+            </div>
+          <div *ngIf="isEditListName!= true">
+            <button class="edit btn btn-info btn-circle blue-gradient " (click)="isEditListName=true;"> <i class="glyphicon glyphicon-edit"></i> </button>
+            <button type="button" class="btn btn-danger btn-circle remove " (click)="deleteList(ltd);  $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
           </div>
 
-          <div *ngIf="selectedListToDo == ltd" class="clickOnEdit">
+          <!--<div *ngIf="selectedListToDo==ltd">-->
+            <!--<div *ngIf="ltd.isAllDone" >-->
+              <!--<del> <span class="listTDName" id="listDone">{{ltd.name | uppercase}}</span></del>-->
+            <!--</div>-->
+            <!--<div *ngIf="!ltd.isAllDone">-->
+              <!--<span class="listTDName">{{ltd.name | uppercase}}</span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <div *ngIf="isEditListName==true && selectedListToDo==ltd " class="clickOnEdit">
             <input #listTD placeholder="{{ltd.name}}" (keyup.enter)="edit(listTD.value); selectedListToDo=null; $event.stopPropagation()" (keyup.esc)="selectedListToDo=null;" id="clickOnEdit"/>
-            <button class="edit btn btn-success btn-circle" (click)="edit(listTD.value); selectedListToDo=null; $event.stopPropagation()"> <i class="glyphicon glyphicon-ok"></i> </button>
+            <button class="edit btn btn-success btn-circle" (click)="edit(listTD.value); selectedListToDo=null; isEditListName=true; $event.stopPropagation()"> <i class="glyphicon glyphicon-ok"></i> </button>
             <button type="button" class="btn btn-danger btn-circle remove" (click)="deleteList(ltd); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
           </div>
 

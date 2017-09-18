@@ -19,14 +19,15 @@
 }
 
 .selected span {
-  display: none;
+  /*display: none;*/
   opacity: 100%;
 }
 
 .selected li {
-  display: none;
+  /*display: none;*/
   border-radius: 4px;
 }
+
 
 .selected .delete {
   display: none;
@@ -186,3 +187,5 @@ li:focus {
     /*float: none !important;*/
   /*}*/
 /*}*/
+
+
