@@ -54,10 +54,18 @@ span:hover{
 }
 
 ul {
-
+  box-shadow: none;
+  outline: none;
+  border-color: transparent;
   padding-right: 0px;
 }
 
+li:focus {
+  box-shadow: none;
+  outline: none;
+  border-color: transparent;
+  padding-right: 0px;
+}
 /*.todos li.selected:hover {*/
 /*background-color: #BBD8DC !important;*/
 /*color: white;*/
@@ -88,7 +96,7 @@ ul {
 .float-label-control :-moz-placeholder { color: gray; }
 .float-label-control ::-moz-placeholder { color: gray; }
 .float-label-control :-ms-input-placeholder { color: gray;}
-.float-label-control input:hover{background-color: #ffffff; border-radius: 7px;  font-family: Calligraffiti, Arial, Helvetica, sans-serif; color: black}
+.float-label-control input:hover{background-color: #ffffff; border-radius: 7px;  font-family: Calligraffiti, Arial, Helvetica, sans-serif; color: black; left: 0em;}
 .float-label-control input:-webkit-autofill,
 .float-label-control textarea:-webkit-autofill {  -webkit-box-shadow: 0 0 0 1000px white inset !important; -moz-box-shadow: 0 0 0 1000px white inset !important; box-shadow: 0 0 0 1000px white inset !important; color: black !important;}
 /*.float-label-control textarea:-webkit-autofill {  -webkit-box-shadow: 0 0 0 1000px white inset !important; -moz-box-shadow: 0 0 0 1000px white inset !important; box-shadow: 0 0 0 1000px white inset !important; color: black !important;}*/
@@ -160,4 +168,8 @@ ul {
 
 #todos{
   display: inline-block;
+}
+
+#inputList{
+  width: 50%;
 }

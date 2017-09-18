@@ -8,9 +8,9 @@
   margin: auto;
   vertical-align: middle;
 }
-/*.inputToDo{*/
-  /*margin: auto auto auto auto;*/
-/*}*/
+.inputToDo{
+  width:90%;
+}
 
 .selected {
   background-color: #f9f9f9 !important;
@@ -151,4 +151,9 @@ background-color: white;
 
 .btn-default{
   background-color: #d1d1d1 !important;
+}
+
+ul {
+
+  padding-right: 0px;
 }
