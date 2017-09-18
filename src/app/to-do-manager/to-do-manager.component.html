@@ -16,7 +16,7 @@
       <!--Test click outside-->
       <!--<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">-->
       <ul class="todos list-group">
-        <li *ngFor="let ltd of ToDoManager" class="list-group-item" [class.selected]="ltd === selectedListToDo" (click)="onSelect(ltd)" (keyup.enter)="onSelect(ltd);" (keyup.esc)="selectedListToDo=null;" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
+        <li *ngFor="let ltd of ToDoManager" class="list-group-item" [class.selected]="ltd === selectedListToDo" (click)="onSelect(ltd)" (keyup.enter)="onSelect(ltd);" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
           <!--<span class="box">{{td.id}}</span>-->
 
           <span>{{ltd.name | uppercase}}</span>

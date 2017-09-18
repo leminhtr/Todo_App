@@ -61,7 +61,11 @@ export class ToDosComponent implements OnInit {
   }
 
   deleteToDo(todo: ToDo): void {
-    this.listToDo.listToDo.splice(todo.id, 1);
+    for (let i = 0; i < this.listToDo.listToDo.length; i++) {
+      if (this.listToDo.listToDo[i].id === todo.id) {
+        this.listToDo.listToDo.splice(i, 1);
+      }
+    }
     this.todoService
       .updateList(this.listToDo)
       .then(() => {
@@ -70,6 +74,7 @@ export class ToDosComponent implements OnInit {
           this.selectedToDo = null;
         }
       });
+
   }
 
   edit(td: ToDo): void {
