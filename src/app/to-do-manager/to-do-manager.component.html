@@ -47,7 +47,7 @@
             <button type="button" class="btn btn-danger btn-circle remove" (click)="deleteList(ltd); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
           </div>
 
-          <div *ngIf="selectedListToDo == ltd" class="col-lg-5 TDlist" id="todos">
+          <div *ngIf="selectedListToDo == ltd" class="col-lg-5 TDlist pull-right" id="todos">
            <app-to-dos [listToDo]="selectedListToDo" [listName]="selectedListToDo.name"></app-to-dos>
           </div>
         </li>

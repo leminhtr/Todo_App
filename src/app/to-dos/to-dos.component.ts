@@ -103,11 +103,11 @@ export class ToDosComponent implements OnInit {
       this.todoService.updateList(this.listToDo).then(() => this.selectedToDo = null);
   }
 
-  isAllDone(chBox: boolean): void {
-    if (!chBox) { // if checkbox is unchecked then List is not all done
-      this.listToDo.isAllDone = false; // update isAllDone value
-      this.todoService.updateList(this.listToDo).then(() => 1);
-    } else {  // else check for every todo element
+  isAllDone(): void {
+    // if (!chBox) { // if checkbox is unchecked then List is not all done
+    //   this.listToDo.isAllDone = false; // update isAllDone value
+    //   this.todoService.updateList(this.listToDo).then(() => 1);
+    // } else {  // else check for every todo element
       let isDone: boolean = false;
       // console.log('list id=' + listId);
       // console.log(this.listToDo);
@@ -122,7 +122,7 @@ export class ToDosComponent implements OnInit {
       }
       this.listToDo.isAllDone = isDone; // update isAllDone value
       this.todoService.updateList(this.listToDo).then(() => 1);
-    }
+    // }
   }
 
 }
