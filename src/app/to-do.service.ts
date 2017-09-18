@@ -5,12 +5,12 @@ import {ToDo} from './to-do';
 // import {TODOS} from './mock-todo';
 import {Http, Headers} from '@angular/http';
 import {ListToDo} from './list-toDo';
-import {toPromise} from "rxjs/operator/toPromise";
+import {toPromise} from 'rxjs/operator/toPromise';
 
 @Injectable()
 export class ToDoService {
 
-  private todosUrl = 'api/todos'; // URL to web API
+  private todosUrl = 'api/toDoManager'; // URL to web API
 
   constructor(private http: Http) { }
 
@@ -46,7 +46,7 @@ export class ToDoService {
       .catch(this.handleError);
   }
 
-  delete(id: number): Promise<void> {
+  deleteToDo(id: number): Promise<void> {
     const url = `${this.todosUrl}/${id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()

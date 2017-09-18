@@ -13,6 +13,7 @@ export class ToDoManagerComponent implements OnInit {
 
   ToDoManager: ListToDo[];  // List of list of ToDo
   selectedListToDo: ListToDo;
+  isEditListName: false;
 
   constructor(
     private todoService: ToDoService
@@ -55,9 +56,13 @@ export class ToDoManagerComponent implements OnInit {
   }
 
 
+  edit(listName: string): void {
+    this.selectedListToDo.name = listName;
+  }
 
-
-
+  printMsg(s: string) {
+    console.log(s);
+  }
 
 
 }

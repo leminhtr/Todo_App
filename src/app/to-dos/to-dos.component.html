@@ -16,20 +16,20 @@
     <!--Test click outside-->
   <!--<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">-->
   <ul class="todos list-group">
-    <li *ngFor="let td of todos" class="list-group-item" [class.selected]="td === selectedToDo" (click)="onSelect(td)" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
-      <input type="checkbox"[(ngModel)]="td.IsCompleted" class="custom-checkbox" />
+    <li *ngFor="let td of todos" class="list-group-item" [class.selected]="td === selectedToDo" (click)="onSelect(td)" (keyup.enter)="onSelect(td);" (keyup.esc)="selectedToDo=null;" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
+      <input type="checkbox"[(ngModel)]="td.IsCompleted" (click)="updateTask(td);" class="custom-checkbox" />
 
       <!--<span class="box">{{td.id}}</span>-->
 
       <span>{{td.task}}</span>
       <div *ngIf="selectedToDo == td" class="clickOnEdit">
-          <input #tdtask placeholder="{{td.task}}" (keyup.enter)="edit(tdtask.value); selectedToDo=null;" (keyup.esc)="selectedToDo=null;" id="clickOnEdit"/>
-          <button class="edit btn btn-success btn-circle" (click)="edit(tdtask.value); selectedToDo=null; $event.stopPropagation()"> <i class="glyphicon glyphicon-ok"></i> </button>
-          <button type="button" class="btn btn-danger btn-circle remove" (click)="delete(td); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
+          <input #tdtask placeholder="{{td.task}}" (keyup.enter)="this.selectedToDo.task=tdtask.value; edit(tdtask); selectedToDo=null; $event.stopPropagation()" (keyup.esc)="selectedToDo=null;" id="clickOnEdit" />
+          <button class="edit btn btn-success btn-circle" (click)="this.selectedToDo.task=tdtask.value; edit(tdtask); selectedToDo=null; $event.stopPropagation()"> <i class="glyphicon glyphicon-ok"></i> </button>
+          <button type="button" class="btn btn-danger btn-circle remove" (click)="deleteToDo(td); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
       </div>
       <div *ngIf="selectedToDo == null">
       <button class="edit btn btn-info btn-circle blue-gradient"> <i class="glyphicon glyphicon-edit"></i> </button>
-        <button type="button" class="btn btn-danger btn-circle remove" (click)="delete(td); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
+        <button type="button" class="btn btn-danger btn-circle remove" (click)="deleteToDo(td); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
 
       </div>
     </li>

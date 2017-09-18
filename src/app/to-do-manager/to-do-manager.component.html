@@ -5,36 +5,40 @@
 
       <div class="form-group float-label-control inputToDo">
         <!--<label>To do task: </label>-->
-        <input #listToDo placeholder="Add a new list" (keyup.enter)="addList(listToDo .value); listToDo .value=''" class="form-control  col-sm-12"/>
+        <input #listToDo placeholder="Add a new themed list" (keyup.enter)="addList(listToDo .value); listToDo .value=''" class="form-control  col-sm-12"/>
         <button type="button" class="btn btn-default btn-circle" (click)="addList(listToDo .value); listToDo .value=''"><i class="glyphicon glyphicon-menu-right"></i></button>
       </div>
     </div>
     <!--Source : https://bootsnipp.com/snippets/featured/float-label-pattern-forms-->
 
-    <!--<div class="row">-->
-      <!--<h2>My To Dos</h2>-->
-      <!--&lt;!&ndash;Test click outside&ndash;&gt;-->
-      <!--&lt;!&ndash;<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">&ndash;&gt;-->
-      <!--<ul class="todos list-group">-->
-        <!--<li *ngFor="let td of todos" class="list-group-item" [class.selected]="td === selectedToDo" (click)="onSelect(td)" tabindex="0"> &lt;!&ndash;When td === selectedTodo then li selected element is of CSS class "selected" &ndash;&gt;-->
-          <!--<input type="checkbox"[(ngModel)]="td.IsCompleted" class="custom-checkbox" />-->
+    <div class="row">
+      <h2>My themed lists</h2>
+      <!--Test click outside-->
+      <!--<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">-->
+      <ul class="todos list-group">
+        <li *ngFor="let ltd of ToDoManager" class="list-group-item" [class.selected]="ltd === selectedListToDo" (click)="onSelect(ltd)" (keyup.enter)="onSelect(ltd);" (keyup.esc)="selectedListToDo=null;" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
+          <!--<span class="box">{{td.id}}</span>-->
 
-          <!--&lt;!&ndash;<span class="box">{{td.id}}</span>&ndash;&gt;-->
+          <span>{{ltd.name | uppercase}}</span>
+          <!--Edit list name-->
+          <div *ngIf="selectedListToDo == ltd" class="clickOnEdit">
+            <input #listTD placeholder="{{ltd.name}}" (keyup.enter)="edit(listTD.value); selectedListToDo=null;" (keyup.esc)="selectedListToDo=null;" id="clickOnEdit"/>
+            <button class="edit btn btn-success btn-circle" (click)="edit(listTD.value); selectedListToDo=null; $event.stopPropagation()"> <i class="glyphicon glyphicon-ok"></i> </button>
+            <button type="button" class="btn btn-danger btn-circle remove" (click)="deleteList(ltd); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
+          </div>
+          <div *ngIf="selectedListToDo == null">
+            <button class="edit btn btn-info btn-circle blue-gradient"> <i class="glyphicon glyphicon-edit"></i> </button>
+            <button type="button" class="btn btn-danger btn-circle remove" (click)="deleteList(ltd); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
 
-          <!--<span>{{td.task}}</span>-->
-          <!--<div *ngIf="selectedToDo == td" class="clickOnEdit">-->
-            <!--<input #tdtask placeholder="{{td.task}}" (keyup.enter)="edit(tdtask.value); selectedToDo=null;" (keyup.esc)="selectedToDo=null;" id="clickOnEdit"/>-->
-            <!--<button class="edit btn btn-success btn-circle" (click)="edit(tdtask.value); selectedToDo=null; $event.stopPropagation()"> <i class="glyphicon glyphicon-ok"></i> </button>-->
-            <!--<button type="button" class="btn btn-danger btn-circle remove" (click)="delete(td); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>-->
-          <!--</div>-->
-          <!--<div *ngIf="selectedToDo == null">-->
-            <!--<button class="edit btn btn-info btn-circle blue-gradient"> <i class="glyphicon glyphicon-edit"></i> </button>-->
-            <!--<button type="button" class="btn btn-danger btn-circle remove" (click)="delete(td); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>-->
+          </div>
 
-          <!--</div>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</div>-->
+          <div *ngIf="selectedListToDo == ltd" class="clickOnEdit">
+           <app-to-dos [listToDo]="selectedListToDo"></app-to-dos>
+          </div>
+        </li>
+      </ul>
+    </div>
+
 
   </div>
 </div>

@@ -11,7 +11,7 @@ import {ListToDo} from '../list-toDo';
   providers: [ToDoService]
 })
 export class ToDosComponent implements OnInit {
-  todos: ToDo[];
+  todos: ToDo[] = [];
   selectedToDo: ToDo;
 
   @Input() listToDo: ListToDo;
@@ -24,13 +24,13 @@ export class ToDosComponent implements OnInit {
     this.selectedToDo = todo;
   }
 
-  getToDos(): void {  // get data from ToDo service, using its method
+  getToDos(idList): void {  // get data from ToDo service, using its method
     // sets the component's heroes property to the array of heroes returned by the service.
-    this.todoService.getToDos().then(todos => this.todos = todos);
+    this.todoService.getListToDo(idList).then(list => this.todos = list.listToDo);
   }
 
   ngOnInit(): void { // get data on component init
-    this.getToDos();
+    this.getToDos(this.listToDo.id);
   }
 
   // gotoDetail(): void {
@@ -42,16 +42,28 @@ export class ToDosComponent implements OnInit {
     if (!task) {
       return;
     }
-    this.todoService.create(task)
-      .then(todo => {
-        this.todos.push(todo);
+
+    if (!this.todos) {
+      this.todos = new Array<ToDo>();
+    }
+    let newToDo: ToDo;
+    if (this.listToDo.listToDo.length === 0) {
+      newToDo = new ToDo(this.listToDo.listToDo.length, task, false);
+    } else {
+      newToDo = new ToDo(this.listToDo.listToDo[this.listToDo.listToDo.length - 1].id + 1, task, false);
+    }
+    this.listToDo.listToDo.push(newToDo);
+    this.todoService.updateList(this.listToDo)
+      .then(list => {
+        this.todos.push(this.listToDo.listToDo[this.listToDo.listToDo.length - 1]);
         this.selectedToDo = null;
       });
   }
 
-  delete(todo: ToDo): void {
+  deleteToDo(todo: ToDo): void {
+    this.listToDo.listToDo.splice(todo.id, 1);
     this.todoService
-      .delete(todo.id)
+      .updateList(this.listToDo)
       .then(() => {
         this.todos = this.todos.filter(t => t !== todo);
         if (this.selectedToDo === todo) {
@@ -60,8 +72,13 @@ export class ToDosComponent implements OnInit {
       });
   }
 
-  edit(task: string): void {
-    this.selectedToDo.task = task;
+  edit(td: ToDo): void {
+    for (let i = 0; i < this.todos.length; i++) {
+      if (this.todos[i].id === td.id) {
+        this.listToDo.listToDo[i].task = td.task;
+      }
+    }
+    this.todoService.updateList(this.listToDo).then(() => this.selectedToDo = null);
   }
 
 

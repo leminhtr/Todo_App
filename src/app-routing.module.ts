@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ToDosComponent } from './app/to-dos/to-dos.component';
-//import { TodoDetailUpdateComponent } from './app/todo-detail-update/todo-detail-update.component';
+import {ToDoManagerComponent} from './app/to-do-manager/to-do-manager.component';
 
 const routes: Routes = [
-   { path: '', redirectTo: '/ToDos', pathMatch: 'full' },
+   { path: '', redirectTo: '/ToDoManager', pathMatch: 'full' },
   // { path: 'detail/:id', component: TodoDetailUpdateComponent },
-  { path: 'ToDos',     component: ToDosComponent }
+  { path: 'ToDoManager',     component: ToDoManagerComponent }
 ];
 
 @NgModule({
