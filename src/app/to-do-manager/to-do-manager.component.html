@@ -12,7 +12,7 @@
     <!--Source : https://bootsnipp.com/snippets/featured/float-label-pattern-forms-->
 
     <div class="row">
-      <h2>My themed lists</h2>
+      <h2>My TO DO Lists</h2>
       <!--Test click outside-->
       <!--<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">-->
       <ul class="todos list-group">
@@ -22,7 +22,7 @@
           <span>{{ltd.name | uppercase}}</span>
           <!--Edit list name-->
           <div *ngIf="selectedListToDo == ltd" class="clickOnEdit">
-            <input #listTD placeholder="{{ltd.name}}" (keyup.enter)="edit(listTD.value); selectedListToDo=null;" (keyup.esc)="selectedListToDo=null;" id="clickOnEdit"/>
+            <input #listTD placeholder="{{ltd.name}}" (keyup.enter)="edit(listTD.value); selectedListToDo=null; $event.stopPropagation()" (keyup.esc)="selectedListToDo=null;" id="clickOnEdit"/>
             <button class="edit btn btn-success btn-circle" (click)="edit(listTD.value); selectedListToDo=null; $event.stopPropagation()"> <i class="glyphicon glyphicon-ok"></i> </button>
             <button type="button" class="btn btn-danger btn-circle remove" (click)="deleteList(ltd); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
           </div>
