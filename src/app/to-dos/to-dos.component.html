@@ -14,8 +14,8 @@
   <div class="row">
     <h2>My To Dos</h2>
   <ul class="todos list-group">
-    <li *ngFor="let td of todos" class="list-group-item" [class.selected]="td === selectedToDo" (click)="onSelect(td)" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
-      <input type="checkbox"[(ngModel)]="td.IsCompleted" class="custom-checkbox" />
+    <li *ngFor="let td of todos" class="list-group-item" [class.selected]="td === selectedToDo" (click)="onSelect(td)" (keyup.enter)="onSelect(td);" (keyup.esc)="selectedToDo=null;" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
+      <input type="checkbox" [(ngModel)]="td.IsCompleted" class="custom-checkbox" />
 
       <!--<span class="box">{{td.id}}</span>-->
 
