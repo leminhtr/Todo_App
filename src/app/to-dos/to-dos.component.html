@@ -1,30 +1,33 @@
 <div class="container ">
   <div class="absolute-center">
-  <div class="row">
 
-
-    <div class="form-group float-label-control inputToDo">
-      <!--<label>To do task: </label>-->
-        <input #todoTask placeholder="What do you want to do?" (keyup.enter)="add(todoTask.value); todoTask.value=''; isAllDone(false);" class="form-control  col-sm-12"/>
-      <button type="button" class="btn btn-default btn-circle" (click)="add(todoTask.value); todoTask.value=''; isAllDone(false);"><i class="glyphicon glyphicon-menu-right"></i></button>
-    </div>
-  </div>
 <!--Source : https://bootsnipp.com/snippets/featured/float-label-pattern-forms-->
 
   <div class="row">
-    <div *ngIf="listName != ''">
+    <div *ngIf="listName != ''" class="listName">
       <h2>{{listName}}</h2>
+    </div>
+
+    <div class="form-group float-label-control inputToDo">
+      <!--<label>To do task: </label>-->
+      <input #todoTask placeholder="What do you want to do?" (keyup.enter)="add(todoTask.value); todoTask.value=''; isAllDone(false);" class="form-control "/>
+      <button type="button" class="btn btn-default btn-circle" (click)="add(todoTask.value); todoTask.value=''; isAllDone(false);"><i class="glyphicon glyphicon-menu-right"></i></button>
     </div>
 
     <!--Test click outside-->
   <!--<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">-->
-  <ul class="todos list-group col-lg-8">
+  <ul class="todos list-group col-lg-8 col-sm-5">
     <li *ngFor="let td of todos" class="list-group-item" [class.selected]="td === selectedToDo" (click)="onSelect(td);" (keyup.enter)="onSelect(td);" (keyup.esc)="selectedToDo=null;" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
       <input type="checkbox"[(ngModel)]="td.IsCompleted" (click)="edit(td); isAllDone(td.IsCompleted);" class="custom-checkbox" />
 
       <!--<span class="box">{{td.id}}</span>-->
 
-      <span>{{td.task}} {{td.IsCompleted}}</span>
+      <div *ngIf="td.IsCompleted">
+       <del><span id="TDCompleted">{{td.task}} {{td.IsCompleted}}</span> </del>
+      </div>
+      <div *ngIf="!td.IsCompleted">
+        <span>{{td.task}} {{td.IsCompleted}}</span>
+      </div>
       <div *ngIf="selectedToDo == td" class="clickOnEdit">
           <input #tdtask placeholder="{{td.task}}" (keyup.enter)="this.selectedToDo.task=tdtask.value; edit(selectedToDo); selectedToDo=null; $event.stopPropagation()" (keyup.esc)="selectedToDo=null;" id="clickOnEdit" />
           <button class="edit btn btn-success btn-circle" (click)="this.selectedToDo.task=tdtask.value; edit(selectedToDo); selectedToDo=null; $event.stopPropagation()"> <i class="glyphicon glyphicon-ok"></i> </button>

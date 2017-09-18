@@ -5,8 +5,8 @@
 
 .absolute-center {
   max-width: 65%;
-  margin: auto;
-  vertical-align: middle;
+  /*margin: auto;*/
+  /*vertical-align: middle;*/
 }
 /*.inputToDo{*/
 /*margin: auto auto auto auto;*/
@@ -173,3 +173,16 @@ li:focus {
 #inputList{
   width: 50%;
 }
+
+.listTDName{
+  font-weight: bold;
+}
+
+#listDone{
+  background-color: #8be58b;
+}
+/*@media (min-width: 600px) {*/
+  /*.row .col-lg-6 > .pull-right {*/
+    /*float: none !important;*/
+  /*}*/
+/*}*/

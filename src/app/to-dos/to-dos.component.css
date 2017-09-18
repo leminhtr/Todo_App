@@ -4,13 +4,34 @@
 /*}*/
 
 .absolute-center {
-  max-width: 65%;
+  max-width: 80%;
   margin: auto;
-  vertical-align: middle;
+  /*vertical-align: middle;*/
 }
 .inputToDo{
-  width:90%;
+  width:88%;
 }
+
+.row .col-lg{
+
+}
+
+@media (min-width: 1200px) {
+  .row{
+    margin-left: 300px;
+    width: 80%;
+    /*float: right;*/
+
+  }
+}
+
+/*@media (min-width: 1200px) {*/
+  /*.row{*/
+    /*margin-left: 200px;*/
+    /*!*float: right;*!*/
+
+  /*}*/
+/*}*/
 
 .selected {
   background-color: #f9f9f9 !important;
@@ -156,4 +177,12 @@ background-color: white;
 ul {
 
   padding-right: 0px;
+}
+
+.listName{
+  padding-bottom: 15px;
+}
+
+#TDCompleted{
+  background-color: palegreen;
 }

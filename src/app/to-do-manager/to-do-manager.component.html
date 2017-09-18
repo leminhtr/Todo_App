@@ -14,15 +14,15 @@
       <h2>My TO DO Lists</h2>
       <!--Test click outside-->
       <!--<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">-->
-      <ul class="todos list-group col-lg-6">
+      <ul class="todos list-group col-lg-6 col-sm-12 col-md-12">
         <li *ngFor="let ltd of ToDoManager" class="list-group-item" [class.selected]="ltd === selectedListToDo" (click)="onSelect(ltd);" (keyup.enter)="onSelect(ltd);" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
           <!--<span class="box">{{td.id}}</span>-->
 
-          <div *ngIf="ltd.isAllDone">
-            <del> <span>{{ltd.name | uppercase}}</span></del>
+          <div *ngIf="ltd.isAllDone" >
+            <del> <span class="listTDName" id="listDone">{{ltd.name | uppercase}}</span></del>
           </div>
           <div *ngIf="!ltd.isAllDone">
-          <span>{{ltd.name | uppercase}}</span>
+          <span class="listTDName">{{ltd.name | uppercase}}</span>
           </div>
           <!--Edit list name-->
 
@@ -37,7 +37,7 @@
             <button type="button" class="btn btn-danger btn-circle remove" (click)="deleteList(ltd); $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
           </div>
 
-          <div *ngIf="selectedListToDo == ltd" class="col-lg-5 pull-right" id="todos">
+          <div *ngIf="selectedListToDo == ltd" class="col-lg-5 TDlist" id="todos">
            <app-to-dos [listToDo]="selectedListToDo" [listName]="selectedListToDo.name"></app-to-dos>
           </div>
         </li>
