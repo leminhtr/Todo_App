@@ -12,7 +12,13 @@
 <!--Source : https://bootsnipp.com/snippets/featured/float-label-pattern-forms-->
 
   <div class="row">
-    <h2>My To Dos</h2>
+    <div *ngIf="listName != ''">
+      <h2>{{listName}}</h2>
+    </div>
+    <div *ngIf="listName == ''">
+      <h2>My To Dos</h2>
+    </div>
+
     <!--Test click outside-->
   <!--<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">-->
   <ul class="todos list-group">

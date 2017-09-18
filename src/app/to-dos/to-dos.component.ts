@@ -15,6 +15,7 @@ export class ToDosComponent implements OnInit {
   selectedToDo: ToDo;
 
   @Input() listToDo: ListToDo;
+  @Input() listName: string = '';
 
   constructor(private router: Router,
               private todoService: ToDoService) {

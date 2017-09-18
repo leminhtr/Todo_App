@@ -152,3 +152,9 @@ span:hover{
 .btn-default{
   background-color: #d1d1d1 !important;
 }
+
+#todos{
+  margin: auto;
+  vertical-align: middle;
+  display: block;
+}
