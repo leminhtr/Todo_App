@@ -15,19 +15,16 @@
     <div *ngIf="listName != ''">
       <h2>{{listName}}</h2>
     </div>
-    <div *ngIf="listName == ''">
-      <h2>My To Dos</h2>
-    </div>
 
     <!--Test click outside-->
   <!--<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">-->
   <ul class="todos list-group">
     <li *ngFor="let td of todos" class="list-group-item" [class.selected]="td === selectedToDo" (click)="onSelect(td);" (keyup.enter)="onSelect(td);" (keyup.esc)="selectedToDo=null;" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
-      <input type="checkbox"[(ngModel)]="td.IsCompleted" (click)="updateTask(td);" class="custom-checkbox" />
+      <input type="checkbox"[(ngModel)]="td.IsCompleted" (click)="edit(td); isAllDone(td.IsCompleted);" class="custom-checkbox" />
 
       <!--<span class="box">{{td.id}}</span>-->
 
-      <span>{{td.task}}</span>
+      <span>{{td.task}} {{td.IsCompleted}}</span>
       <div *ngIf="selectedToDo == td" class="clickOnEdit">
           <input #tdtask placeholder="{{td.task}}" (keyup.enter)="this.selectedToDo.task=tdtask.value; edit(selectedToDo); selectedToDo=null; $event.stopPropagation()" (keyup.esc)="selectedToDo=null;" id="clickOnEdit" />
           <button class="edit btn btn-success btn-circle" (click)="this.selectedToDo.task=tdtask.value; edit(selectedToDo); selectedToDo=null; $event.stopPropagation()"> <i class="glyphicon glyphicon-ok"></i> </button>

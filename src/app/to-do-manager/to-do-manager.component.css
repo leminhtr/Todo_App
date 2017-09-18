@@ -53,6 +53,11 @@ span:hover{
   border-radius: 4px;
 }
 
+ul {
+
+  padding-right: 0px;
+}
+
 /*.todos li.selected:hover {*/
 /*background-color: #BBD8DC !important;*/
 /*color: white;*/
@@ -154,7 +159,5 @@ span:hover{
 }
 
 #todos{
-  margin: auto;
-  vertical-align: middle;
-  display: block;
+  display: inline-block;
 }

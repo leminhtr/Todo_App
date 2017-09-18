@@ -79,9 +79,11 @@ export class ToDosComponent implements OnInit {
   }
 
   edit(td: ToDo): void {
+    td.IsCompleted = !td.IsCompleted;
     for (let i = 0; i < this.todos.length; i++) {
       if (this.todos[i].id === td.id) {
         this.listToDo.listToDo[i].task = td.task;
+        this.listToDo.listToDo[i].IsCompleted = td.IsCompleted;
       }
     }
     this.todoService.updateList(this.listToDo).then(() => this.selectedToDo = null);
@@ -93,19 +95,34 @@ export class ToDosComponent implements OnInit {
   }
 
   updateTask(todo: ToDo): void {
-    if (todo.IsCompleted === false) {
-      todo.IsCompleted = true;
-      // else
-      todo.IsCompleted = false;
       for (let i = 0; i < this.todos.length; i++) {
         if (todo.id === this.todos[i].id) {
           this.listToDo.listToDo[i].IsCompleted = todo.IsCompleted;
         }
       }
       this.todoService.updateList(this.listToDo).then(() => this.selectedToDo = null);
+  }
+
+  isAllDone(chBox: boolean): void {
+    if (!chBox) { // if checkbox is unchecked then List is not all done
+      this.listToDo.isAllDone = false; // update isAllDone value
+      this.todoService.updateList(this.listToDo).then(() => 1);
+    } else {  // else check for every todo element
+      let isDone: boolean = false;
+      // console.log('list id=' + listId);
+      // console.log(this.listToDo);
+      if (this.todos.length === 0) {
+        isDone = false;
+      }
+      for (let i = 0; i < this.todos.length; i++) {
+        if (!this.todos[i].IsCompleted) {
+          isDone = false; // if at least one todo is not done => return false
+        }
+        isDone = true;  // else if no todo is not {not done} => return true
+      }
+      this.listToDo.isAllDone = isDone; // update isAllDone value
+      this.todoService.updateList(this.listToDo).then(() => 1);
     }
-
-
   }
 
 }

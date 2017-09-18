@@ -14,11 +14,16 @@
       <h2>My TO DO Lists</h2>
       <!--Test click outside-->
       <!--<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">-->
-      <ul class="todos list-group">
+      <ul class="todos list-group col-lg-4">
         <li *ngFor="let ltd of ToDoManager" class="list-group-item" [class.selected]="ltd === selectedListToDo" (click)="onSelect(ltd);" (keyup.enter)="onSelect(ltd);" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
           <!--<span class="box">{{td.id}}</span>-->
 
+          <div *ngIf="ltd.isAllDone">
+            <del> <span>{{ltd.name | uppercase}}</span></del>
+          </div>
+          <div *ngIf="!ltd.isAllDone">
           <span>{{ltd.name | uppercase}}</span>
+          </div>
           <!--Edit list name-->
           <div *ngIf="selectedListToDo == ltd" class="clickOnEdit">
             <input #listTD placeholder="{{ltd.name}}" (keyup.enter)="edit(listTD.value); selectedListToDo=null; $event.stopPropagation()" (keyup.esc)="selectedListToDo=null;" id="clickOnEdit"/>
@@ -31,7 +36,7 @@
 
           </div>
 
-          <div *ngIf="selectedListToDo == ltd" id="todos">
+          <div *ngIf="selectedListToDo == ltd" class="col-lg-5" id="todos">
            <app-to-dos [listToDo]="selectedListToDo" [listName]="selectedListToDo.name"></app-to-dos>
           </div>
         </li>

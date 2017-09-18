@@ -17,11 +17,12 @@ export class ToDoManagerComponent implements OnInit {
 
   constructor(
     private todoService: ToDoService
-  ) { }
+  ) {}
 
   getToDoManager(): void {  // get data from ToDo service, using its method
     this.todoService.getToDoManager().then(TDManager => this.ToDoManager = TDManager);
   }
+
   ngOnInit(): void {
     this.getToDoManager();
   }
@@ -32,7 +33,9 @@ export class ToDoManagerComponent implements OnInit {
 
   addList(listName: string): void {
     listName = listName.trim();
-    if (!listName) { return; }
+    if (!listName) {
+      return;
+    }
     this.todoService.createListToDo(listName) // if listName not empty then todoService creates a list and returns it as ListToDo
       .then(ListToDo => {
         ListToDo.listToDo = new Array<ToDo>();  // init the list
@@ -46,7 +49,9 @@ export class ToDoManagerComponent implements OnInit {
       .deleteListToDo(list.id)
       .then(() => {
         this.ToDoManager = this.ToDoManager.filter(l => l !== list);
-        if (this.selectedListToDo === list) { this.selectedListToDo = null; }
+        if (this.selectedListToDo === list) {
+          this.selectedListToDo = null;
+        }
       });
   }
 
