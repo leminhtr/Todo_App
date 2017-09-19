@@ -127,4 +127,15 @@ export class ToDosComponent implements OnInit {
       // }
     }
   }
+
+  countNotDone(): number {
+    let n: number = 0;
+    for (let i = 0 ; i < this.todos.length ; i++ ) {
+      if (this.todos[i].IsCompleted === false) {
+        n++;
+      }
+    }
+    return n;
+  }
+
 }

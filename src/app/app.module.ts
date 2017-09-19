@@ -17,8 +17,7 @@ import { ToDoManagerComponent } from './to-do-manager/to-do-manager.component';
   declarations: [
     AppComponent,
     ToDosComponent,
-    ToDoManagerComponent,
-    // TodoDetailUpdateComponent,
+    ToDoManagerComponent
   ],
   imports: [
     BrowserModule,
