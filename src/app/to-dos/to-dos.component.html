@@ -16,9 +16,15 @@
 
     <!--Test click outside-->
   <!--<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">-->
-  <ul class="todos list-group col-lg-8 col-sm-5">
-    <li *ngFor="let td of todos" class="list-group-item" [class.selected]="td === selectedToDo" (click)="onSelect(td);" (keyup.enter)="onSelect(td);" (keyup.esc)="selectedToDo=null;" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
+  <ul class="list-group col-lg-8 col-sm-2" id="tdCheckbox">
+    <li *ngFor="let td of todos" class="list-group-item"(keyup.enter)="onSelect(td);" (keyup.esc)="selectedToDo=null;" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
       <input type="checkbox"[(ngModel)]="td.IsCompleted" (click)="edit(td); isAllDone();" class="custom-checkbox" />
+    </li>
+  </ul>
+
+    <ul class="todos list-group col-lg-8 col-sm-5">
+    <li *ngFor="let td of todos" class="list-group-item" [class.selected]="td === selectedToDo" (click)="onSelect(td);" (keyup.enter)="onSelect(td);" (keyup.esc)="selectedToDo=null;" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
+      <!--<input type="checkbox"[(ngModel)]="td.IsCompleted" (click)="edit(td); isAllDone();" class="custom-checkbox" />-->
 
       <!--<span class="box">{{td.id}}</span>-->
 
