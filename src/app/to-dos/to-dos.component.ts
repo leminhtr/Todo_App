@@ -65,6 +65,7 @@ export class ToDosComponent implements OnInit {
     for (let i = 0; i < this.listToDo.listToDo.length; i++) {
       if (this.listToDo.listToDo[i].id === todo.id) {
         this.listToDo.listToDo.splice(i, 1);
+        this.todos.splice(i, 1);
       }
     }
     this.todoService
@@ -75,6 +76,7 @@ export class ToDosComponent implements OnInit {
           this.selectedToDo = null;
         }
       });
+    this.isAllDone(true);
 
   }
 
@@ -89,11 +91,6 @@ export class ToDosComponent implements OnInit {
     this.todoService.updateList(this.listToDo).then(() => this.selectedToDo = null);
   }
 
-
-  printMsg(s: string) {
-    console.log(s);
-  }
-
   updateTask(todo: ToDo): void {
       for (let i = 0; i < this.todos.length; i++) {
         if (todo.id === this.todos[i].id) {
@@ -103,11 +100,11 @@ export class ToDosComponent implements OnInit {
       this.todoService.updateList(this.listToDo).then(() => this.selectedToDo = null);
   }
 
-  isAllDone(): void {
-    // if (!chBox) { // if checkbox is unchecked then List is not all done
-    //   this.listToDo.isAllDone = false; // update isAllDone value
-    //   this.todoService.updateList(this.listToDo).then(() => 1);
-    // } else {  // else check for every todo element
+  isAllDone(toBeChecked: boolean): void {
+    if (!toBeChecked) { // if check if all done not necessary
+      this.listToDo.isAllDone = false; // update isAllDone value
+      this.todoService.updateList(this.listToDo).then(() => 1);
+    } else {  // else check for every todo element
       let isDone: boolean = false;
       // console.log('list id=' + listId);
       // console.log(this.listToDo);
@@ -115,14 +112,19 @@ export class ToDosComponent implements OnInit {
         isDone = false;
       }
       for (let i = 0; i < this.todos.length; i++) {
-        if (!this.todos[i].IsCompleted) {
-          isDone = false; // if at least one todo is not done => return false
+        console.log('todos[i] :' + this.todos[i].IsCompleted);
+        if (this.todos[i].IsCompleted) {
+          isDone = true; // if at least one todo is not done => return false
+        } else {
+          isDone = false;  // else if no todo is not {not done} => return true
+          this.listToDo.isAllDone = isDone; // update isAllDone value
+          this.todoService.updateList(this.listToDo).then(() => 1);
+          return;
         }
-        isDone = true;  // else if no todo is not {not done} => return true
       }
       this.listToDo.isAllDone = isDone; // update isAllDone value
       this.todoService.updateList(this.listToDo).then(() => 1);
-    // }
+      // }
+    }
   }
-
 }

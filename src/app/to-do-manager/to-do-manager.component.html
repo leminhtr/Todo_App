@@ -23,10 +23,10 @@
 
 
             <div *ngIf="ltd.isAllDone==true" >
-              <del> <span class="listTDName" id="listDone">{{ltd.name | uppercase}} {{ltd.isAllDone}}</span></del>
+              <del> <span class="listTDName" id="listDone">{{ltd.name | uppercase}}</span></del>
             </div>
-            <div *ngIf="ltd.isAllDone==false">
-              <span class="listTDName">{{ltd.name | uppercase}} {{ltd.isAllDone}}</span>
+            <div *ngIf="!ltd.isAllDone==true">
+              <span class="listTDName">{{ltd.name | uppercase}}</span>
             </div>
           <div *ngIf="isEditListName!= true">
             <button class="edit btn btn-info btn-circle blue-gradient " (click)="isEditListName=true;"> <i class="glyphicon glyphicon-edit"></i> </button>
