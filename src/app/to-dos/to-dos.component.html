@@ -21,7 +21,7 @@
   <!--<ul class="todos list-group"/ (clickOutside)="selectedToDo=null; printMsg('outside div ul');">-->
   <ul class="list-group col-lg-8 col-sm-2" id="tdCheckbox">
     <li *ngFor="let td of todos" class="list-group-item"(keyup.enter)="onSelect(td);" (keyup.esc)="selectedToDo=null;" tabindex="0"> <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
-      <input type="checkbox"[(ngModel)]="td.IsCompleted" (click)="edit(td); isAllDone(true);" class="custom-checkbox" />
+      <input type="checkbox"[(ngModel)]="td.IsCompleted" (click)="editChecked(td); isAllDone(true);" class="custom-checkbox" />
     </li>
   </ul>
 
@@ -38,7 +38,7 @@
         <span>{{td.task}}</span>
       </div>
       <div *ngIf="selectedToDo == td" class="clickOnEdit">
-          <input #tdtask placeholder="{{td.task}}" (keyup.enter)="this.selectedToDo.task=tdtask.value; edit(selectedToDo); selectedToDo=null; $event.stopPropagation()" (keyup.esc)="selectedToDo=null;" id="clickOnEdit" />
+          <input #tdtask placeholder="{{td.task}}" (keyup.enter)="this.selectedToDo.task=tdtask.value; edit(selectedToDo);  selectedToDo=null; $event.stopPropagation()" (keyup.esc)="selectedToDo=null;" id="clickOnEdit" />
           <button class="edit btn btn-success btn-circle" (click)="this.selectedToDo.task=tdtask.value; edit(selectedToDo); selectedToDo=null; $event.stopPropagation()"> <i class="glyphicon glyphicon-ok"></i> </button>
           <button type="button" class="btn btn-danger btn-circle remove" (click)="deleteToDo(selectedToDo);  $event.stopPropagation()"> <i class="glyphicon glyphicon-trash "></i>  </button>
       </div>

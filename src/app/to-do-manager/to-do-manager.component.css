@@ -189,3 +189,12 @@ li:focus {
 /*}*/
 
 
+.resume{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: rgba(254, 238, 121, 0.85);
+  text-align: left;
+}

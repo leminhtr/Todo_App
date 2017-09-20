@@ -81,10 +81,18 @@ export class ToDosComponent implements OnInit {
   }
 
   edit(td: ToDo): void {
-    td.IsCompleted = !td.IsCompleted;
     for (let i = 0; i < this.todos.length; i++) {
       if (this.todos[i].id === td.id) {
         this.listToDo.listToDo[i].task = td.task;
+      }
+    }
+    this.todoService.updateList(this.listToDo).then(() => this.selectedToDo = null);
+  }
+
+  editChecked(td: ToDo): void {
+    td.IsCompleted = !td.IsCompleted;
+    for (let i = 0; i < this.todos.length; i++) {
+      if (this.todos[i].id === td.id) {
         this.listToDo.listToDo[i].IsCompleted = td.IsCompleted;
       }
     }
@@ -112,7 +120,7 @@ export class ToDosComponent implements OnInit {
         isDone = false;
       }
       for (let i = 0; i < this.todos.length; i++) {
-        console.log('todos[i] :' + this.todos[i].IsCompleted);
+        // console.log('todos[i] :' + this.todos[i].IsCompleted);
         if (this.todos[i].IsCompleted) {
           isDone = true; // if at least one todo is not done => return false
         } else {

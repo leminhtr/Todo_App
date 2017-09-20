@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ListToDo} from '../list-toDo';
 import {ToDoService} from '../to-do.service';
 import {ToDo} from '../to-do';
+import {FooterComponent} from '../footer/footer.component';
+
 
 @Component({
   selector: 'app-to-do-manager',
@@ -14,7 +16,6 @@ export class ToDoManagerComponent implements OnInit {
   ToDoManager: ListToDo[];  // List of list of ToDo
   selectedListToDo: ListToDo;
   isEditListName: false;
-
   constructor(
     private todoService: ToDoService
   ) {}
@@ -67,6 +68,7 @@ export class ToDoManagerComponent implements OnInit {
 
   printMsg(s: string) {
     console.log(s);
+    console.log(this.selectedListToDo);
   }
 
 

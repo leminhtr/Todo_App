@@ -50,12 +50,16 @@
           <div *ngIf="selectedListToDo == ltd" class="col-lg-5 TDlist pull-right" id="todos">
            <app-to-dos [listToDo]="selectedListToDo" [listName]="selectedListToDo.name"></app-to-dos>
           </div>
+
         </li>
+
       </ul>
     </div>
-    <!--<div *ngIf="selectedListToDo != null" id="todos">-->
-      <!--<app-to-dos [listToDo]="selectedListToDo"></app-to-dos>-->
-    <!--</div>-->
 
   </div>
 </div>
+
+<div *ngIf="selectedListToDo!=null" class="resume">
+  <app-footer [list]="selectedListToDo" ></app-footer>
+</div>
+

@@ -12,12 +12,14 @@ import {HttpModule} from '@angular/http';
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { ToDoManagerComponent } from './to-do-manager/to-do-manager.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToDosComponent,
-    ToDoManagerComponent
+    ToDoManagerComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
