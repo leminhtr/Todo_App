@@ -1,16 +1,6 @@
-/*.container{*/
-/*vertical-align: middle;*/
-/*horiz-align: middle;*/
-/*}*/
-
 .absolute-center {
   max-width: 65%;
-  /*margin: auto;*/
-  /*vertical-align: middle;*/
 }
-/*.inputToDo{*/
-/*margin: auto auto auto auto;*/
-/*}*/
 
 .selected, li:focus{
   background-color: #f9f9f9 !important;
@@ -19,12 +9,10 @@
 }
 
 .selected span {
-  /*display: none;*/
   opacity: 100%;
 }
 
 .selected li {
-  /*display: none;*/
   border-radius: 4px;
 }
 
@@ -34,23 +22,11 @@
 }
 .todos {
   font-family: Calligraffiti, Arial, Helvetica, sans-serif;
-  /*margin: 0 0 2em 5em;*/
-  /*list-style-type: none;*/
-  /*padding: 0;*/
-  /*width: 15em;*/
 }
 span:hover{
   font-weight: bold;
 }
 .todos li {
-  /*cursor: pointer;*/
-  /*font-family: Calligraffiti, Arial, Helvetica;*/
-  /*position: relative;*/
-  /*left: 0;*/
-  /*background-color: #EEE;*/
-  /*margin: .5em;*/
-  /*padding: .3em 0;*/
-  /*height: 1.6em;*/
   border-radius: 4px;
 }
 
@@ -67,14 +43,10 @@ li:focus {
   border-color: transparent;
   padding-right: 0px;
 }
-/*.todos li.selected:hover {*/
-/*background-color: #BBD8DC !important;*/
-/*color: white;*/
-/*}*/
+
 .todos li:hover {
   font-weight: 600;
   background-color: #f9f9f9;
-  /*left: .1em;*/
 }
 
 .remove .edit {
@@ -182,12 +154,6 @@ li:focus {
 #listDone{
   background-color: #8be58b;
 }
-/*@media (min-width: 600px) {*/
-  /*.row .col-lg-6 > .pull-right {*/
-    /*float: none !important;*/
-  /*}*/
-/*}*/
-
 
 .resume{
   position: absolute;

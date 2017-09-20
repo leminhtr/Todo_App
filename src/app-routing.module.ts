@@ -5,9 +5,9 @@ import { ToDosComponent } from './app/to-dos/to-dos.component';
 import {ToDoManagerComponent} from './app/to-do-manager/to-do-manager.component';
 
 const routes: Routes = [
-   { path: '', redirectTo: '/ToDoManager', pathMatch: 'full' },
+   { path: '', redirectTo: '/toDoManager', pathMatch: 'full' },
   // { path: 'detail/:id', component: TodoDetailUpdateComponent },
-  { path: 'ToDoManager',     component: ToDoManagerComponent }
+  { path: 'toDoManager',     component: ToDoManagerComponent }
 ];
 
 @NgModule({

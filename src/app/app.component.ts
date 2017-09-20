@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ToDo } from './to-do';
 import { ToDoService } from './to-do.service';
-import { ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +16,3 @@ export class AppComponent implements OnInit {
   }
 
 }
-
-
-
-

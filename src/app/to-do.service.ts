@@ -54,7 +54,7 @@ export class ToDoService {
       .catch(this.handleError);
   }
 
-  // ToDoManager CRUD methods
+  // toDoManager CRUD methods
   getToDoManager(): Promise<ListToDo[]> {
     return this.http.get(this.todosUrl).toPromise()
       .then(response => response.json().data as ListToDo[])

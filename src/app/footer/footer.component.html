@@ -5,7 +5,6 @@
 
 </h3>
 
-<!--<p >{{printList()}} {{list.listToDo.length}} {{percentDone()}}</p>-->
 <div *ngIf="list.listToDo.length>0 && list.listToDo.length != countNotDone() ">
   <p>{{list.listToDo.length}} todos and {{countNotDone()}} remaining todos -  ({{percentDone()}} %)</p>
 </div>

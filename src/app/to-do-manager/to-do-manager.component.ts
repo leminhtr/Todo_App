@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ListToDo} from '../list-toDo';
 import {ToDoService} from '../to-do.service';
 import {ToDo} from '../to-do';
-import {FooterComponent} from '../footer/footer.component';
-
 
 @Component({
   selector: 'app-to-do-manager',
@@ -13,7 +11,7 @@ import {FooterComponent} from '../footer/footer.component';
 })
 export class ToDoManagerComponent implements OnInit {
 
-  ToDoManager: ListToDo[];  // List of list of ToDo
+  toDoManager: ListToDo[];  // List of list of ToDo
   selectedListToDo: ListToDo;
   isEditListName: false;
   constructor(
@@ -21,7 +19,7 @@ export class ToDoManagerComponent implements OnInit {
   ) {}
 
   getToDoManager(): void {  // get data from ToDo service, using its method
-    this.todoService.getToDoManager().then(TDManager => this.ToDoManager = TDManager);
+    this.todoService.getToDoManager().then(TDManager => this.toDoManager = TDManager);
   }
 
   ngOnInit(): void {
@@ -38,9 +36,9 @@ export class ToDoManagerComponent implements OnInit {
       return;
     }
     this.todoService.createListToDo(listName) // if listName not empty then todoService creates a list and returns it as ListToDo
-      .then(ListToDo => {
-        ListToDo.listToDo = new Array<ToDo>();  // init the list
-        this.ToDoManager.push(ListToDo);  // add it to the ToDoManager
+      .then(listToDo => {
+        listToDo.listToDo = new Array<ToDo>();  // init the list
+        this.toDoManager.push(listToDo);  // add it to the toDoManager
         this.selectedListToDo = null;
       });
   }
@@ -49,7 +47,7 @@ export class ToDoManagerComponent implements OnInit {
     this.todoService
       .deleteListToDo(list.id)
       .then(() => {
-        this.ToDoManager = this.ToDoManager.filter(l => l !== list);
+        this.toDoManager = this.toDoManager.filter(l => l !== list);
         if (this.selectedListToDo === list) {
           this.selectedListToDo = null;
         }
@@ -64,11 +62,6 @@ export class ToDoManagerComponent implements OnInit {
 
   edit(listName: string): void {
     this.selectedListToDo.name = listName;
-  }
-
-  printMsg(s: string) {
-    console.log(s);
-    console.log(this.selectedListToDo);
   }
 
 

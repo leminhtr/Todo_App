@@ -114,8 +114,6 @@ export class ToDosComponent implements OnInit {
       this.todoService.updateList(this.listToDo).then(() => 1);
     } else {  // else check for every todo element
       let isDone: boolean = false;
-      // console.log('list id=' + listId);
-      // console.log(this.listToDo);
       if (this.todos.length === 0) {
         isDone = false;
       }

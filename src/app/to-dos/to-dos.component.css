@@ -1,16 +1,7 @@
-/*.container{*/
-  /*vertical-align: middle;*/
-  /*horiz-align: middle;*/
-/*}*/
-
 .absolute-center {
   max-width: 80%;
   margin: auto;
-  /*vertical-align: middle;*/
 }
-/*.inputToDo{*/
-  /*width:95%;*/
-/*}*/
 
 .row .col-lg{
 
@@ -20,18 +11,8 @@
   .row{
     margin-left: 90px;
     width: 80%;
-    /*float: right;*/
-
   }
 }
-
-/*@media (min-width: 1200px) {*/
-  /*.row{*/
-    /*margin-left: 200px;*/
-    /*!*float: right;*!*/
-
-  /*}*/
-/*}*/
 
 .selected, li:focus{
   background-color: #f9f9f9 !important;
@@ -56,35 +37,18 @@
 }
 .todos {
   font-family: Calligraffiti, Arial, Helvetica, sans-serif;
-  /*margin: 0 0 2em 5em;*/
-  /*list-style-type: none;*/
-  /*padding: 0;*/
-  /*width: 15em;*/
 }
 span:hover{
   font-weight: bold;
 }
 .todos li {
-  /*cursor: pointer;*/
-  /*font-family: Calligraffiti, Arial, Helvetica;*/
-  /*position: relative;*/
-  /*left: 0;*/
-  /*background-color: #EEE;*/
-  /*margin: .5em;*/
-  /*padding: .3em 0;*/
-  /*height: 1.6em;*/
   height: 90px;
   border-radius: 4px;
 }
 
-/*.todos li.selected:hover {*/
-  /*background-color: #BBD8DC !important;*/
-  /*color: white;*/
-/*}*/
 .todos li:hover {
   font-weight: 600;
   background-color: #f9f9f9;
-  /*left: .1em;*/
 }
 
 .remove .edit {
@@ -162,7 +126,7 @@ background-color: white;
   50% { opacity: 0; font-size: 0.85em; }
   100% { top: 3em; opacity: 1; }
 }
-/* Margin list-group 10px 19px 0px 18px*/
+
 .btn-circle {
   width: 30px;
   height: 30px;
@@ -190,9 +154,7 @@ ul {
 }
 
 #tdCheckbox{
-  /*height:50px ;*/
   margin-right: 15px;
-  /*margin-top: 24px;*/
   width: 50px;
   display: inline-block;
 }
