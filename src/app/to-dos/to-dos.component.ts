@@ -34,10 +34,6 @@ export class ToDosComponent implements OnInit {
     this.getToDos(this.listToDo.id);
   }
 
-  // gotoDetail(): void {
-  //   this.router.navigate(['/detail', this.selectedToDo.id]);
-  // }
-
   add(task: string): void {
     task = task.trim();
     if (!task) {

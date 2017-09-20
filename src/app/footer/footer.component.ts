@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ListToDo} from '../list-toDo';
 import {ToDoService} from '../to-do.service';
+import {ToDo} from '../to-do';
 
 @Component({
   selector: 'app-footer',
@@ -10,6 +11,7 @@ import {ToDoService} from '../to-do.service';
 export class FooterComponent implements OnInit {
 
   @Input() list: ListToDo;
+  // listTD: ToDo[] = this.list.listToDo;
 
   constructor() { }
   ngOnInit() {
