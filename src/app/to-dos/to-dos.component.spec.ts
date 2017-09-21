@@ -14,7 +14,7 @@ import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {ToDoManagerComponent} from '../to-do-manager/to-do-manager.component';
-import {FooterComponent} from "../footer/footer.component";
+import {FooterComponent} from '../footer/footer.component';
 
 
 describe('ToDosComponent', () => {
@@ -37,6 +37,8 @@ describe('ToDosComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ToDosComponent);
     component = fixture.componentInstance;
+    const fakeList = new ListToDo(1, 'list1', Array<ToDo>(), false);
+    component.listToDo = fakeList;
     fixture.detectChanges();
   });
 
