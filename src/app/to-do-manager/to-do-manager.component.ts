@@ -11,25 +11,50 @@ import {ToDo} from '../to-do';
 })
 export class ToDoManagerComponent implements OnInit {
 
+  /**
+   * @property {ListToDo[]} toDoManager: The list of the themed list of ToDo
+   */
   toDoManager: ListToDo[];  // List of list of ToDo
+  /**
+   * @property {ListToDo} selectListToDo: The selected themed list
+   */
   selectedListToDo: ListToDo;
+  /**
+   * @property {boolean} isEditListName: Is the list name in edit mode
+   */
   isEditListName: false;
   constructor(
     private todoService: ToDoService
   ) {}
 
+  /** Get the list of ToDo from the service
+   * Initialize the toDoManager attribute
+   */
   getToDoManager(): void {  // get data from ToDo service, using its method
     this.todoService.getToDoManager().then(TDManager => this.toDoManager = TDManager);
   }
 
+  /**
+   * Call the getToDoManager method to initialize the toDoManager attribute
+   * on Component initialization
+   */
   ngOnInit(): void {
     this.getToDoManager();
   }
 
+  /**
+   * Assign the selectedListToDo attribute to the parameter: the selected themed list
+   * @param {ListToDo} listTD : The list of ToDo of the selected themed list
+   */
   onSelect(listTD: ListToDo): void {
     this.selectedListToDo = listTD;
   }
 
+  /**
+   * Add a new list to the existing list of themed list and to the database
+   * Create a list of name 'listName'; Update the database and the toDoManager list attribute
+   * @param {string} listName : The name of the new themed list to create
+   */
   addList(listName: string): void {
     listName = listName.trim();
     if (!listName) {
@@ -39,10 +64,15 @@ export class ToDoManagerComponent implements OnInit {
       .then(listToDo => {
         listToDo.listToDo = new Array<ToDo>();  // init the list
         this.toDoManager.push(listToDo);  // add it to the toDoManager
-        this.selectedListToDo = null;
+        this.selectedListToDo = null; // remove the focus on the selected list
       });
   }
 
+  /**
+   * Delete the list "list" from the database and toDoManager list attribute
+   * Search the list from the service in the database by seeking matching id
+   * @param {ListToDo} list : The list to be deleted
+   */
   deleteList(list: ListToDo): void {
     this.todoService
       .deleteListToDo(list.id)
@@ -54,12 +84,16 @@ export class ToDoManagerComponent implements OnInit {
       });
   }
 
+  //
+  // saveList(): void {
+  //   this.todoService.updateList(this.selectedListToDo).then();
+  // }
 
-  saveList(): void {
-    this.todoService.updateList(this.selectedListToDo).then();
-  }
 
-
+  /**
+   *  Edit the themed list name
+   * @param {string} listName
+   */
   edit(listName: string): void {
     this.selectedListToDo.name = listName;
   }

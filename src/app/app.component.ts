@@ -10,6 +10,10 @@ import { ToDoService } from './to-do.service';
 })
 export class AppComponent implements OnInit {
   title = 'TODO App';
+
+  /**
+   * @constructor
+   */
   constructor() { }
 
   ngOnInit() {
