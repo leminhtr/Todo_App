@@ -85,12 +85,6 @@ export class ToDoManagerComponent implements OnInit {
       });
   }
 
-  //
-  // saveList(): void {
-  //   this.todoService.updateList(this.selectedListToDo).then();
-  // }
-
-
   /**
    *  Edit the themed list name
    * @param {string} listName
@@ -99,6 +93,10 @@ export class ToDoManagerComponent implements OnInit {
     this.selectedListToDo.name = listName;
   }
 
+  /**
+   * Send the selected list to the subscribers
+   * @param {ListToDo} list
+   */
   sendSelectedList(list: ListToDo): void {
     this.todoService.sendSelectedList(list);
   }

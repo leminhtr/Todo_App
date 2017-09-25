@@ -14,7 +14,7 @@ import {InMemoryDataService} from '../in-memory-data.service';
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, By} from '@angular/platform-browser';
 import {APP_BASE_HREF} from '@angular/common';
 
 describe('ToDoManagerComponent', () => {
@@ -43,7 +43,7 @@ describe('ToDoManagerComponent', () => {
   }));
 
   beforeEach(() => {
-    mokTaskManager = new ListToDo(1, 'list1', Array<ToDo>(), false);
+    mokTaskManager = new ListToDo(1, 'Holiday', Array<ToDo>(), false);
     mokArray = new Array<ListToDo>();
     mokArray[0] = mokTaskManager;
 
@@ -74,71 +74,77 @@ describe('ToDoManagerComponent', () => {
   /**
    * Test if to toDoManager is initialized with data from service
    */
-  // it('should get toDoManager when initialized', async(() => {
-  //   component.ngOnInit();
-  //   // const fakeList = new ListToDo(0, 'Holiday', [], false);
-  //   const fakeList = new ListToDo(0, 'Holiday', [], false);
-  //   fixture.detectChanges();
-  //   fixture.whenStable().then(() => {
-  //     expect(component.toDoManager[0]).toBe(fakeList);
-  //   });
-  // }));
+  it('should get toDoManager when initialized', async(() => {
+    component.ngOnInit();
+    const fakeList = new ListToDo(1, 'Holiday', [], false);
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      expect(component.toDoManager[0]).toEqual(fakeList);
+    });
+  }));
 
-  it('should delete a List when the trash button is clicked', async(() => {
+  /**
+   * deleteList unit test
+   */
+  it('should delete a list when the trash button is clicked', async(() => {
     fixture.whenStable().then(() => {
       const el = de.nativeElement.querySelector('.remove');
       el.click();
       fixture.whenStable().then(() => {
-        expect(component.toDoManager.length).toBe(1);
+        expect(component.toDoManager.length).toBe(0);
 
       });
     });
   }));
 
-  // beforeEach(() => {
-  //   fixture = TestBed.createComponent(ToDoManagerComponent);
-  //   component = fixture.componentInstance;
-  //   fixture.detectChanges();
-  // });
   /**
-   * deleteList unit test
+   * edit button unit test
    */
-  // it('should get toDoManager of length 0', async(() => {
-  //   component.ngOnInit();
-  //   fixture = TestBed.createComponent(ToDoManagerComponent);
-  //   component = fixture.componentInstance;
-  //   fixture.detectChanges();
-  //   fixture.whenStable().then(() => {
-  //     component.toDoManager[0] = new ListToDo(0, 'Holiday', [], false);
-  //     component.deleteList(component.toDoManager[0]);
-  //     console.log(component.toDoManager);
-  //     console.log(component.toDoManager.length);
-  //     expect(component.toDoManager.length).toEqual(1);
-  //   });
-  // // }));
-  // it('should get toDoManager of length 0', async(() => {
-  //   component.ngOnInit();
-  //   // fixture = TestBed.createComponent(ToDoManagerComponent);
-  //   let element = fixture.nativeElement;      // to access DOM element
-  //   // component = fixture.componentInstance;
-  //   fixture.detectChanges();
-  //   fixture.whenStable().then(() => {
-  //     component.toDoManager[0] = mockData;
-  //     component.deleteList(component.toDoManager[0]);
-  //     console.log(component.toDoManager);
-  //     console.log(component.toDoManager.length);
-  //     expect(component.toDoManager.length).toEqual(1);
-  //   });
-  // }));
+  it('should edit the name of the list', async(() => {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      // get edit button to enter edit list name mode
+      const editButton = de.nativeElement.querySelector('#editButton');
+      editButton.click();
+      // when view is stable
+      fixture.whenStable().then(() => {
+        // detectChanges on input
+        fixture.detectChanges();
+        // get input element and put test value
+        const input = de.nativeElement.querySelector('#editListInput');
+        input.value = 'listEdited';
+        // get edit confirm button to change value
+        const editConfirm = de.nativeElement.querySelector('#editConfirm');
+        editConfirm.click();
+        // when view is stable
+        fixture.whenStable().then(() => {
+            expect(component.toDoManager[0].name).toContain('listEdited');
+        });
+      });
+    });
+  }));
 
-  // it('should get toDoManager with new element', async(() => {
-  //   component.ngOnInit();
-  //   // const fakeList = new ListToDo(0, 'Holiday', [], false);
-  //   const fakeList = new ListToDo(0, 'Holiday', [], false);
-  //   const emptyList = new Array<void>();
-  //   fixture.detectChanges();
-  //   fixture.whenStable().then(() => {
-  //     expect(component.deleteList(component.toDoManager[0])).toBeEmptyArray();
-  //   });
-  // }));
+  /**
+   * add button unit test
+   */
+  it('should add a new list and increment the length of the toDoManager list', async(() => {
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      // detectChanges on input
+      fixture.detectChanges();
+      // get input element and put test value
+      const input = de.nativeElement.querySelector('#inputList');
+      input.value = 'newList';
+      // get edit button to enter edit list name mode
+      const editButton = de.nativeElement.querySelector('#addListButton');
+      editButton.click();
+      // when view is stable
+      fixture.whenStable().then(() => {
+        // when view is stable
+        expect(component.toDoManager.length).toBe(0);
+          expect(component.toDoManager[1].name).toContain('newList');
+      });
+    });
+  }));
+
 });

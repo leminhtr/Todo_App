@@ -2,18 +2,20 @@
   <div class="absolute-center">
     <div class="row">
 
+      <!-- Add new themed list form-->
       <div class="form-group float-label-control inputToDo">
         <!--<label>To do task: </label>-->
         <input #listToDo placeholder="Add a new themed list"
                (keyup.enter)="addList(listToDo .value); listToDo .value=''"
                class="form-control col-sm-12 col-lg-5" id="inputList"/>
-        <button type="button" class="btn btn-default btn-circle"
+        <button type="button" class="btn btn-default btn-circle" id="addListButton"
                 (click)="addList(listToDo .value); listToDo.value=''">
           <i class="glyphicon glyphicon-menu-right"></i>
         </button>
       </div>
     </div>
 
+    <!-- List of themed lists -->
     <div class="row">
       <h2>My TO DO Lists</h2>
       <ul class="todos list-group col-lg-6 col-sm-12 col-md-12">
@@ -21,6 +23,7 @@
         <li *ngFor="let ltd of toDoManager" class="list-group-item" [class.selected]="ltd === selectedListToDo"
             (click)="onSelect(ltd);" (keyup.enter)="onSelect(ltd);" tabindex="0">
 
+          <!-- cross list name if all done or not-->
             <div *ngIf="ltd.isAllDone==true" >
               <del>
                 <span class="listTDName" id="listDone">{{ltd.name | uppercase}}</span>
@@ -30,8 +33,10 @@
               <span class="listTDName">{{ltd.name | uppercase}}</span>
             </div>
 
+          <!-- Show edit/delete button if not in editing mode-->
           <div *ngIf="isEditListName!= true">
-            <button class="edit btn btn-info btn-circle blue-gradient"
+            <!-- Edit button trigger editing mode-->
+            <button class="edit btn btn-info btn-circle blue-gradient" id="editButton"
                     (click)="isEditListName=true;">
               <i class="glyphicon glyphicon-edit"></i> </button>
             <button type="button" class="btn btn-danger btn-circle remove "
@@ -40,11 +45,12 @@
             </button>
           </div>
 
+          <!-- Show input form, validation/delete button if in editing mode-->
           <div *ngIf="isEditListName==true && selectedListToDo==ltd " class="clickOnEdit">
             <input #listTD placeholder="{{ltd.name}}"
                    (keyup.enter)="edit(listTD.value); selectedListToDo=null; $event.stopPropagation()"
-                   (keyup.esc)="selectedListToDo=null;" id="clickOnEdit"/>
-            <button class="edit btn btn-success btn-circle"
+                   (keyup.esc)="selectedListToDo=null;" id="editListInput"/>
+            <button class="edit btn btn-success btn-circle" id="editConfirm"
                     (click)="edit(listTD.value); selectedListToDo=null; isEditListName=true; $event.stopPropagation()">
               <i class="glyphicon glyphicon-ok"></i> </button>
             <button type="button" class="btn btn-danger btn-circle remove"
@@ -66,11 +72,6 @@
   </div>
 </div>
 
-<!--<div *ngIf="selectedListToDo!=null" class="resume">-->
-  <!--<app-footer [list]="selectedListToDo" ></app-footer>-->
-<!--</div>-->
-
-<!--<button (click)="sendSelectedList()">Send </button>-->
 <div *ngIf="selectedListToDo" class="resume">
   <app-footer></app-footer>
 </div>

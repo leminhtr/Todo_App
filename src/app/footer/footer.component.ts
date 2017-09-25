@@ -8,7 +8,6 @@ import {Subscription} from 'rxjs/Subscription';
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css'],
-  // providers: [ToDoService]
 })
 export class FooterComponent implements OnInit {
 
