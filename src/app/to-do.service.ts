@@ -153,19 +153,9 @@ export class ToDoService {
 
 
   sendSelectedList(list: ListToDo) {
-    // console.log('service: Behavior subject - this.selectedList');
-    // console.log(this.selectedList);
     this.selectedList.next(list);
-    console.log(' list to be sent :');
-    console.log(list);
-    console.log('service: Behavior subject - this.selectedList');
-    console.log(this.selectedList);
-    // console.log('service: this.selectedList.next');
-    // console.log(this.selectedList.next(list));
   }
   getSelectedList(): Observable<any> {
-    console.log('get selected : selectedList.asObservable');
-    console.log(this.selectedList.asObservable());
     return this.selectedList.asObservable();
   }
 }

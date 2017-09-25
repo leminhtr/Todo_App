@@ -101,7 +101,6 @@ export class ToDoManagerComponent implements OnInit {
 
   sendSelectedList(list: ListToDo): void {
     this.todoService.sendSelectedList(list);
-    console.log('sendSelected');
   }
 
 }

@@ -25,10 +25,7 @@ export class FooterComponent implements OnInit {
    */
   constructor(private todoService: ToDoService) {
     this.subscription = this.todoService.getSelectedList()
-      .subscribe(list => {this.selectedList = list; console.log('footer list res');
-      console.log(list); console.log('footer subscription'); console.log(this.subscription); });
-    console.log(this.subscription);
-    console.log(this.selectedList);
+      .subscribe(list => {this.selectedList = list; });
   }
   ngOnInit() {
   }
