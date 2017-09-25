@@ -27,7 +27,7 @@ describe('ToDoManagerComponent', () => {
 
   let mokTaskManager: ListToDo;
   let mokArray: Array<ListToDo>;
-  let mokArray2: Array<ListToDo>;
+  // let mokArray2: Array<ListToDo>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

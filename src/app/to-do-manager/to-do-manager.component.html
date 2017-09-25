@@ -66,7 +66,11 @@
   </div>
 </div>
 
-<div *ngIf="selectedListToDo!=null" class="resume">
-  <app-footer [list]="selectedListToDo" ></app-footer>
-</div>
+<!--<div *ngIf="selectedListToDo!=null" class="resume">-->
+  <!--<app-footer [list]="selectedListToDo" ></app-footer>-->
+<!--</div>-->
 
+<!--<button (click)="sendSelectedList()">Send </button>-->
+<div *ngIf="selectedListToDo" class="resume">
+  <app-footer></app-footer>
+</div>

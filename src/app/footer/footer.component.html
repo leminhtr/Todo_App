@@ -1,13 +1,17 @@
 <div class="ListInfo">
 
 <h3>
-  {{list.name}}
-
+  <div *ngIf="selectedList">
+    {{selectedList.name}}
+  </div>
 </h3>
 
-<div *ngIf="list.listToDo.length>0 && list.listToDo.length != countNotDone() ">
-  <p>{{list.listToDo.length}} todos and {{countNotDone()}} remaining todos -  ({{percentDone()}} %)</p>
+  <div *ngIf="selectedList">
+<div *ngIf="selectedList.listToDo.length>0 && selectedList.listToDo.length != countNotDone() ">
+  <p>{{selectedList.listToDo.length}} todos and {{countNotDone()}} remaining todos -  ({{percentDone()}} %)</p>
 </div>
+  </div>
+
 
 </div>
 

@@ -31,7 +31,7 @@ export class ToDosComponent implements OnInit {
    * @property {string} listName: The name of the themed list, selected by ToDoManagerComponent
    * @type {string}
    */
-  @Input() listName: string = '';
+  @Input() listName = '';
 
   /**
    * Constructor of ToDoComponent
@@ -178,7 +178,7 @@ export class ToDosComponent implements OnInit {
       this.todoService.updateList(this.listToDo).then(() => 1);
     } else {
       // else check for every todo element
-      let isDone: boolean = false;
+      let isDone = false;
       // if the list is empty then list is not all done
       if (this.todos.length === 0) {
         isDone = false;
@@ -208,7 +208,7 @@ export class ToDosComponent implements OnInit {
    * @return {number} : The number of todo not done yet
    */
   countNotDone(): number {
-    let n: number = 0;
+    let n = 0;
     for (let i = 0 ; i < this.todos.length ; i++ ) {
       if (this.todos[i].IsCompleted === false) {
         n++;

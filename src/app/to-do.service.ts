@@ -6,10 +6,15 @@ import {ToDo} from './to-do';
 import {Http, Headers} from '@angular/http';
 import {ListToDo} from './list-toDo';
 import {toPromise} from 'rxjs/operator/toPromise';
+import {Subject} from 'rxjs/Subject';
+import {Observable} from 'rxjs/';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ToDoService {
-
+  private selectedList: Subject<ListToDo> = new BehaviorSubject<ListToDo>(null);
+  // private selectedList = new Subject<ListToDo>();
+  //
   /**
    * URL to web API
    * @type {string}
@@ -145,4 +150,22 @@ export class ToDoService {
       .catch(this.handleError);
   }
 
+
+
+  sendSelectedList(list: ListToDo) {
+    // console.log('service: Behavior subject - this.selectedList');
+    // console.log(this.selectedList);
+    this.selectedList.next(list);
+    console.log(' list to be sent :');
+    console.log(list);
+    console.log('service: Behavior subject - this.selectedList');
+    console.log(this.selectedList);
+    // console.log('service: this.selectedList.next');
+    // console.log(this.selectedList.next(list));
+  }
+  getSelectedList(): Observable<any> {
+    console.log('get selected : selectedList.asObservable');
+    console.log(this.selectedList.asObservable());
+    return this.selectedList.asObservable();
+  }
 }

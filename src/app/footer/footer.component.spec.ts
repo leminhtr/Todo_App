@@ -9,7 +9,7 @@ import {ToDo} from '../to-do';
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
-  let list: ListToDo;
+  const list: ListToDo = new ListToDo(1, 'list1', Array<ToDo>(), false);
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,7 +22,7 @@ describe('FooterComponent', () => {
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     const fakeList = new ListToDo(1, 'list1', Array<ToDo>(), false);
-    component.list = fakeList;
+    component.selectedList = fakeList;
     fixture.detectChanges();
   });
 

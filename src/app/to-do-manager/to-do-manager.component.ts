@@ -10,7 +10,6 @@ import {ToDo} from '../to-do';
   providers: [ToDoService]
 })
 export class ToDoManagerComponent implements OnInit {
-
   /**
    * @property {ListToDo[]} toDoManager: The list of the themed list of ToDo
    */
@@ -24,14 +23,14 @@ export class ToDoManagerComponent implements OnInit {
    */
   isEditListName: false;
   constructor(
-    private todoService: ToDoService
-  ) {}
+    private todoService: ToDoService) {}
 
   /** Get the list of ToDo from the service
    * Initialize the toDoManager attribute
    */
   getToDoManager(): void {  // get data from ToDo service, using its method
     this.todoService.getToDoManager().then(TDManager => this.toDoManager = TDManager);
+    // this.onSelect(this.toDoManager[0]);
   }
 
   /**
@@ -39,6 +38,7 @@ export class ToDoManagerComponent implements OnInit {
    * on Component initialization
    */
   ngOnInit(): void {
+    this.toDoManager = new Array<ListToDo>();
     this.getToDoManager();
   }
 
@@ -48,6 +48,7 @@ export class ToDoManagerComponent implements OnInit {
    */
   onSelect(listTD: ListToDo): void {
     this.selectedListToDo = listTD;
+    this.sendSelectedList(listTD);
   }
 
   /**
@@ -98,5 +99,9 @@ export class ToDoManagerComponent implements OnInit {
     this.selectedListToDo.name = listName;
   }
 
+  sendSelectedList(list: ListToDo): void {
+    this.todoService.sendSelectedList(list);
+    console.log('sendSelected');
+  }
 
 }
