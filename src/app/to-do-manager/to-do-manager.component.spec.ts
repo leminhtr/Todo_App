@@ -16,6 +16,7 @@ import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule, By} from '@angular/platform-browser';
 import {APP_BASE_HREF} from '@angular/common';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 describe('ToDoManagerComponent', () => {
   let component: ToDoManagerComponent;

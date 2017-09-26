@@ -1,25 +1,33 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import {Component, Input, OnInit} from '@angular/core';
-import {ListToDo} from '../list-toDo';
-import {ToDoService} from '../to-do.service';
+import {DebugElement, Input, OnInit} from '@angular/core';
 
-import { FooterComponent } from './footer.component';
-import {ToDo} from '../to-do';
+
 import {InMemoryDataService} from '../in-memory-data.service';
 import {APP_BASE_HREF} from '@angular/common';
 import {AppRoutingModule} from '../../app-routing.module';
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, By} from '@angular/platform-browser';
+
+import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import 'rxjs/Rx';
+
+import {ToDo} from '../to-do';
 import {AppComponent} from '../app.component';
 import {ToDoManagerComponent} from '../to-do-manager/to-do-manager.component';
 import {ToDosComponent} from '../to-dos/to-dos.component';
+import { FooterComponent } from './footer.component';
+import {ListToDo} from '../list-toDo';
+import {ToDoService} from '../to-do.service';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
-  const list: ListToDo = new ListToDo(1, 'list1', Array<ToDo>(), false);
+  let de: DebugElement;
+  let mokListToDo: ListToDo;
+  let mokToDo: ToDo;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -37,13 +45,32 @@ describe('FooterComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FooterComponent);
+    de = fixture.debugElement;
     component = fixture.componentInstance;
-    const fakeList = new ListToDo(1, 'list1', Array<ToDo>(), false);
-    component.selectedList = fakeList;
+
+    mokListToDo = new ListToDo(1, 'Holiday', Array<ToDo>(), false);
+    mokToDo = new ToDo(1, 'coffee', false);
+    mokListToDo.listToDo[0] = mokToDo;
+    component.selectedList = mokListToDo;
+
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  /**
+   * Test if to footer is initialized with selectedList infos
+   */
+  it('should get the name of the selected list when initialized', async(() => {
+    component.ngOnInit();
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      // Get h3 list name element
+      const elemListName = de.nativeElement.querySelector('#listName');
+      expect(elemListName.innerText).toContain('Holiday');
+    });
+  }));
+
 });

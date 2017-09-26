@@ -16,6 +16,8 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { ToDoManagerComponent } from './to-do-manager/to-do-manager.component';
 import { FooterComponent } from './footer/footer.component';
 import {APP_BASE_HREF} from '@angular/common';
+import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 
 
