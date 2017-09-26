@@ -22,12 +22,10 @@ describe('ToDoManagerComponent', () => {
   let todoService: ToDoService;
   let fixture: ComponentFixture<ToDoManagerComponent>;
   let de: DebugElement;
-  const mockData: ListToDo = new ListToDo(0, 'Holiday', Array<ToDo>(), false);
   let spy: any;
 
-  let mokTaskManager: ListToDo;
+  let mokToDoManager: ListToDo;
   let mokArray: Array<ListToDo>;
-  // let mokArray2: Array<ListToDo>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -43,17 +41,14 @@ describe('ToDoManagerComponent', () => {
   }));
 
   beforeEach(() => {
-    mokTaskManager = new ListToDo(1, 'Holiday', Array<ToDo>(), false);
+    mokToDoManager = new ListToDo(1, 'Holiday', Array<ToDo>(), false);
     mokArray = new Array<ListToDo>();
-    mokArray[0] = mokTaskManager;
+    mokArray[0] = mokToDoManager;
 
     fixture = TestBed.createComponent(ToDoManagerComponent);
     de = fixture.debugElement;
     component = fixture.componentInstance;
     todoService = de.injector.get(ToDoService) as any;
-    // todoService = TestBed.get(ToDoService);
-    // spy = spyOn(todoService, 'deleteListToDo').and.returnValue(Promise.resolve(null));
-    // spy = spyOn(component, 'getToDoManager').and.returnValue(Promise.resolve(null));
     spy = spyOn(component, 'getToDoManager').and.callFake(() => {
       component.toDoManager = mokArray;
     });
@@ -62,15 +57,7 @@ describe('ToDoManagerComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(component).toBeTruthy();
   });
-
-  //
-  // beforeEach(() => {
-  //   fixture = TestBed.createComponent(ToDoManagerComponent);
-  //   component = fixture.componentInstance;
-  //   fixture.detectChanges();
-  // });
   /**
    * Test if to toDoManager is initialized with data from service
    */
@@ -136,12 +123,12 @@ describe('ToDoManagerComponent', () => {
       const input = de.nativeElement.querySelector('#inputList');
       input.value = 'newList';
       // get edit button to enter edit list name mode
-      const editButton = de.nativeElement.querySelector('#addListButton');
-      editButton.click();
+      const addButton = de.nativeElement.querySelector('#addListButton');
+      addButton.click();
       // when view is stable
       fixture.whenStable().then(() => {
         // when view is stable
-        expect(component.toDoManager.length).toBe(0);
+        expect(component.toDoManager.length).toBe(2);
           expect(component.toDoManager[1].name).toContain('newList');
       });
     });
