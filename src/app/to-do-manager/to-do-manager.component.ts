@@ -52,6 +52,19 @@ export class ToDoManagerComponent implements OnInit {
   }
 
   /**
+   * Seek if a name of list already exists
+   * @param {string} listName: The name of the list to be checked
+   * @return {boolean}: Duplicate or not.
+   */
+  isDuplicateListName(listName: string): boolean {
+    for (let i = 0 ; i < this.toDoManager.length ; i++) {
+      if (this.toDoManager[i].name === listName) {
+        return true;
+      }
+    }
+    return false;
+  }
+  /**
    * Add a new list to the existing list of themed list and to the database
    * Create a list of name 'listName'; Update the database and the toDoManager list attribute
    * @param {string} listName : The name of the new themed list to create
@@ -59,6 +72,10 @@ export class ToDoManagerComponent implements OnInit {
   addList(listName: string): void {
     listName = listName.trim();
     if (!listName) {
+      return;
+    }
+    if (this.isDuplicateListName(listName)) {
+      alert('This list of To Do already exists.');
       return;
     }
     this.todoService.createListToDo(listName) // if listName not empty then todoService creates a list and returns it as ListToDo
