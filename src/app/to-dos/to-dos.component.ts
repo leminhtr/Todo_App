@@ -131,15 +131,17 @@ export class ToDosComponent implements OnInit {
    * Edit the task of the toDo
    * @param {ToDo} td: The toDo to be edited
    */
-  edit(td: ToDo): void {
-    const todoTask = td.task.trim();
-    if (!todoTask) {
+  edit(td: ToDo, editedTask: string): void {
+    editedTask = editedTask.trim();
+    // const todoTask = td.task.trim();
+    if (!editedTask) {
       return;
     }
     // Search the todo using its id in the list of todo of listToDo attribute
     for (let i = 0; i < this.todos.length; i++) {
       if (this.todos[i].id === td.id) {
-        this.listToDo.listToDo[i].task = td.task;
+        this.listToDo.listToDo[i].task = editedTask;
+        this.selectedToDo.task = editedTask;
       }
     }
     // Then update the database using the service

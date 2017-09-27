@@ -51,11 +51,11 @@
         <!-- Edit on selectedToDo -->
       <div *ngIf="selectedToDo == td" class="clickOnEdit">
           <input #tdtask placeholder="{{td.task}}"
-                 (keyup.enter)="this.selectedToDo.task=tdtask.value; edit(selectedToDo);
+                 (keyup.enter)="edit(selectedToDo, tdtask.value);
                       selectedToDo=null; $event.stopPropagation()"
                  (keyup.esc)="selectedToDo=null;" id="inputEdit" />
           <button class="edit btn btn-success btn-circle" id="confirmEditButton"
-                  (click)="this.selectedToDo.task=tdtask.value; edit(selectedToDo);
+                  (click)="edit(selectedToDo, tdtask.value);
                       selectedToDo=null; $event.stopPropagation()">
             <i class="glyphicon glyphicon-ok"></i>
           </button>

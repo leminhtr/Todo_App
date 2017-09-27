@@ -108,7 +108,7 @@ describe('to-do-app App', () => {
     const spacedName = ' ';
     page.editToDoTask(spacedName);
     const EditedToDo = page.getNthToDoTextContent(0);
-    expect(EditedToDo).toBe(spacedName);
+    expect(EditedToDo).not.toBe(spacedName);
   });
 
 
