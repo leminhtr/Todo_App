@@ -13,15 +13,20 @@ export class AppPage {
     return element(by.css(componentSelector + ' ' + elem));
   }
 
-  getDOMTextContent(componentSelector: string, elem: string) {
+  getTextContentOf(componentSelector: string, elem: string) {
     return this.getDOMElement(componentSelector, elem).getText();
   }
 
   getAllLiElement() {
     return element.all(by.css('li'));
   }
-  getLiElement(repeat: string, index: number) {
-    return element.all(by.repeater(repeat)).get(index);
+
+  getToDoManagerList() {
+    return element.all(by.css('#listToDoElement'));
+  }
+
+  getToDosList() {
+    return element.all(by.css('#toDoElement'));
   }
 
   deleteList() {
@@ -45,5 +50,10 @@ export class AppPage {
     input.sendKeys(newName);
     const editConfirmButton = element(by.css('#editConfirm'));
     editConfirmButton.click();
+  }
+
+  selectFirstList() {
+    const firstListElement = element(by.css('#listToDoElement'));
+    firstListElement.click();
   }
 }

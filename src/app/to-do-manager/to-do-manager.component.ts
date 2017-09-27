@@ -107,6 +107,10 @@ export class ToDoManagerComponent implements OnInit {
    * @param {string} listName
    */
   edit(listName: string): void {
+    listName = listName.trim();
+    if (!listName) {
+      return;
+    }
     this.selectedListToDo.name = listName;
   }
 

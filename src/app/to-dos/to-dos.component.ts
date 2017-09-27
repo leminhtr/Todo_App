@@ -132,6 +132,10 @@ export class ToDosComponent implements OnInit {
    * @param {ToDo} td: The toDo to be edited
    */
   edit(td: ToDo): void {
+    const todoTask = td.task.trim();
+    if (!todoTask) {
+      return;
+    }
     // Search the todo using its id in the list of todo of listToDo attribute
     for (let i = 0; i < this.todos.length; i++) {
       if (this.todos[i].id === td.id) {
