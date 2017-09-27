@@ -40,7 +40,7 @@ describe('FooterComponent', () => {
         AppRoutingModule],
       providers: [{provide : APP_BASE_HREF, useValue: '/'}, ToDoService, InMemoryDataService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

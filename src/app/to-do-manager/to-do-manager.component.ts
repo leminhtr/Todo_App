@@ -10,18 +10,22 @@ import {ToDo} from '../to-do';
   providers: [ToDoService]
 })
 export class ToDoManagerComponent implements OnInit {
+
   /**
    * @property {ListToDo[]} toDoManager: The list of the themed list of ToDo
    */
   toDoManager: ListToDo[];  // List of list of ToDo
+
   /**
    * @property {ListToDo} selectListToDo: The selected themed list
    */
   selectedListToDo: ListToDo;
+
   /**
    * @property {boolean} isEditListName: Is the list name in edit mode
    */
   isEditListName: false;
+
   constructor(
     private todoService: ToDoService) {}
 
@@ -58,7 +62,7 @@ export class ToDoManagerComponent implements OnInit {
    */
   isDuplicateListName(listName: string): boolean {
     for (let i = 0 ; i < this.toDoManager.length ; i++) {
-      if (this.toDoManager[i].name === listName) {
+      if (this.toDoManager[i].name.toLowerCase() === listName.toLowerCase()) {
         return true;
       }
     }
@@ -92,6 +96,8 @@ export class ToDoManagerComponent implements OnInit {
    * @param {ListToDo} list : The list to be deleted
    */
   deleteList(list: ListToDo): void {
+    // exit edit mode if in edit mode
+    this.isEditListName = false;
     this.todoService
       .deleteListToDo(list.id)
       .then(() => {
@@ -103,15 +109,20 @@ export class ToDoManagerComponent implements OnInit {
   }
 
   /**
-   *  Edit the themed list name
+   * Edit the themed list name if not blank
    * @param {string} listName
    */
   edit(listName: string): void {
+    // remove whitespace
     listName = listName.trim();
+    // stop if listName empty
     if (!listName) {
       return;
     }
+    // else edit the name
     this.selectedListToDo.name = listName;
+    // exit edit mode
+    this.isEditListName = false;
   }
 
   /**

@@ -1,6 +1,12 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 export class InMemoryDataService implements InMemoryDbService {
+  /**
+   * Create the database
+   * @return {{toDoManager: ({id: number; name: string; listToDo: ({id: number; task: string; IsCompleted: boolean}
+    * | {id: number; task: string; IsCompleted: boolean} | {id: number; task: string; IsCompleted: boolean})[]; isAllDone: boolean}
+    * | {id: number; name: string; listToDo: Array; isAllDone: boolean})[]}}
+   */
   createDb() {
     const toDoManager = [
       {id : 0, name : 'Shopping list', listToDo : [

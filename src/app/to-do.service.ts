@@ -12,9 +12,12 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class ToDoService {
+  /**
+   * Subject object of the current selected themed list
+   * @type {BehaviorSubject<ListToDo>}
+   */
   private selectedList: Subject<ListToDo> = new BehaviorSubject<ListToDo>(null);
-  // private selectedList = new Subject<ListToDo>();
-  //
+
   /**
    * URL to web API
    * @type {string}
@@ -43,23 +46,6 @@ export class ToDoService {
     return Promise.reject(error.message || error);
   }
 
-  // getToDos(): Promise<ToDo[]> {
-  //   return Promise.resolve(TODOS);
-  // }
-  // getToDos(): Promise<ToDo[]> {
-  //   return this.http.get(this.todosUrl)
-  //     .toPromise()
-  //     .then(response => response.json().data as ToDo[])
-  //     .catch(this.handleError);
-  // }
-  //
-  // getToDo(id: number): Promise<ToDo> {
-  //   const url = `${this.todosUrl}/${id}`;
-  //   return this.http.get(url)
-  //     .toPromise()
-  //     .then(response => response.json().data as ToDo)
-  //     .catch(this.handleError);
-  // }
   /**
    * Create a todo and update the database by making an html post query to the API
    * Return a promise of the created toDo
@@ -73,14 +59,6 @@ export class ToDoService {
       .then(res => res.json().data as ToDo)
       .catch(this.handleError);
   }
-
-  // deleteToDo(id: number): Promise<void> {
-  //   const url = `${this.todosUrl}/${id}`;
-  //   return this.http.delete(url, {headers: this.headers})
-  //     .toPromise()
-  //     .then(() => null)
-  //     .catch(this.handleError);
-  // }
 
   // *** toDoManager CRUD methods ***//
   /**
@@ -151,10 +129,18 @@ export class ToDoService {
   }
 
 
-
+  /**
+   * Send list to all the Observer
+   * @param {ListToDo} list: The list to send
+   */
   sendSelectedList(list: ListToDo) {
     this.selectedList.next(list);
   }
+
+  /**
+   * Return an Observable of the list
+   * @return {Observable<any>}
+   */
   getSelectedList(): Observable<any> {
     return this.selectedList.asObservable();
   }

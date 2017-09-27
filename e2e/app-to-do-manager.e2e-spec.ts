@@ -1,9 +1,9 @@
 import { AppPage } from './app.po';
-import {browser, by, element} from 'protractor';
+import {browser, by, element, protractor} from 'protractor';
 import {async} from '@angular/core/testing';
 import {count} from 'rxjs/operator/count';
 
-describe('to-do-app App', () => {
+describe('to-do-app app-to-do-manager', () => {
   let page: AppPage;
   const toDoManagerCompTag = 'app-to-do-manager';
 
@@ -31,6 +31,24 @@ describe('to-do-app App', () => {
     page.addNewList('List');
 
     expect(page.getAllLiElement().count()).toBe(4);
+  });
+
+  it('should not add a new duplicate list and keep the same list length', async() => {
+    page.navigateTo();
+    page.addNewList('Holiday');
+
+    browser.wait(protractor.ExpectedConditions.alertIsPresent(), 10000);
+    browser.switchTo().alert().accept();
+    expect(page.getAllLiElement().count()).toBe(3);
+  });
+
+  it('should not add a new duplicate list (case insensitive) and keep the same list length', async() => {
+    page.navigateTo();
+    page.addNewList('HoLidAy');
+
+    browser.wait(protractor.ExpectedConditions.alertIsPresent(), 10000);
+    browser.switchTo().alert().accept();
+    expect(page.getAllLiElement().count()).toBe(3);
   });
 
   it('should not add a new list with blank name and keep the same list length', async() => {

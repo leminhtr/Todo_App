@@ -12,20 +12,28 @@ import {Subscription} from 'rxjs/Subscription';
 export class FooterComponent implements OnInit {
 
   /**
-   * @property {ListToDo} list: The list to get info on
+   * @property {ListToDo} selectedList: The list to get info on
    */
-
   selectedList: ListToDo;
+
+  /**
+   * @property {Subscription} subscription: Subscription object to get the list from
+   */
   subscription: Subscription;
 
   /**
-   * Default constructor of the footer
+   * Constructor of the footer
+   * Get selected list from Observable
    * @constructor
    */
   constructor(private todoService: ToDoService) {
     this.subscription = this.todoService.getSelectedList()
       .subscribe(list => {this.selectedList = list; });
   }
+
+  /**
+   * ngOnInit
+   */
   ngOnInit() {
   }
 

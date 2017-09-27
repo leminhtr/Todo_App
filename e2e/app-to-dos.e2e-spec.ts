@@ -3,7 +3,7 @@ import {browser, by, element} from 'protractor';
 import {async} from '@angular/core/testing';
 import {count} from 'rxjs/operator/count';
 
-describe('to-do-app App', () => {
+describe('to-do-app app-to-dos', () => {
   let page: AppPage;
   const toDosCompTag = 'app-to-dos';
 

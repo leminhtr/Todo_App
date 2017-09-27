@@ -51,7 +51,7 @@
                    (keyup.enter)="edit(listTD.value); selectedListToDo=null; $event.stopPropagation()"
                    (keyup.esc)="selectedListToDo=null;" id="editListInput"/>
             <button class="edit btn btn-success btn-circle" id="editConfirm"
-                    (click)="edit(listTD.value); selectedListToDo=null; isEditListName=true; $event.stopPropagation()">
+                    (click)="edit(listTD.value); selectedListToDo=null; $event.stopPropagation()">
               <i class="glyphicon glyphicon-ok"></i> </button>
             <button type="button" class="btn btn-danger btn-circle remove"
                     (click)="deleteList(ltd); $event.stopPropagation()">
