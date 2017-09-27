@@ -38,4 +38,83 @@ describe('to-do-app App', () => {
     expect(page.getAllLiElement().count()).toBe(3);
   });
 
+  /**
+   * Test for addToDo
+   */
+  it('should add a new toDo and increment list length', async() => {
+    page.navigateTo();
+    page.selectFirstList();
+
+    page.addNewToDo('newToDo');
+
+    expect(page.getToDosList().count()).toBe(4);
+  });
+
+  it('should not add a new toDo with blank name and keep the same list length', async() => {
+    page.navigateTo();
+    page.selectFirstList();
+
+    page.addNewToDo('');
+
+    expect(page.getToDosList().count()).toBe(3);
+  });
+
+  it('should not add a new toDo with name with space and keep the same list length', async() => {
+    page.navigateTo();
+    page.selectFirstList();
+
+    page.addNewToDo(' ');
+
+    expect(page.getToDosList().count()).toBe(3);
+  });
+
+  /**
+   * Test for deleteToDo
+   */
+  it('should delete a toDo and decrement list length', async() => {
+    page.navigateTo();
+    page.selectFirstList();
+    page.deleteToDo();
+
+    expect(page.getToDosList().count()).toBe(2);
+  });
+
+  /**
+   * Test for editToDo
+   */
+  it('should edit a toDo', async() => {
+    page.navigateTo();
+    page.selectFirstList();
+
+    const newName = 'toDoEdited';
+    page.editToDoTask(newName);
+
+    const EditedToDo = page.getTextContentOf(ToDosCompTag, '#toDosList');
+    expect(EditedToDo).toContain(newName);
+  });
+
+  it('should not edit toDo name if blank space', async() => {
+    page.navigateTo();
+    page.selectFirstList();
+
+    const blankName = '';
+    page.editToDoTask(blankName);
+
+    const EditedToDo = page.getTextContentOf(ToDosCompTag, '#toDosList');
+    expect(EditedToDo).not.toContain(blankName);
+  });
+
+  it('should not edit toDo name if only space char', async() => {
+    page.navigateTo();
+    page.selectFirstList();
+
+    const spacedName = ' ';
+    page.editToDoTask(spacedName);
+
+    const EditedToDo = page.getTextContentOf(ToDosCompTag, '#toDosList');
+    expect(EditedToDo).not.toContain(spacedName);
+  });
+
+
+
 });

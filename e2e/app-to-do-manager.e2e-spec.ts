@@ -32,7 +32,6 @@ describe('to-do-app App', () => {
   it('should add a new list and increment list length', async() => {
     page.navigateTo();
     page.addNewList('List');
-    // await
 
     expect(page.getAllLiElement().count()).toBe(4);
   });
@@ -40,7 +39,6 @@ describe('to-do-app App', () => {
   it('should not add a new list with blank name and keep the same list length', async() => {
     page.navigateTo();
     page.addNewList('');
-    // await
 
     expect(page.getAllLiElement().count()).toBe(3);
   });
@@ -48,7 +46,6 @@ describe('to-do-app App', () => {
   it('should not add a new list with name with space and keep the same list length', async() => {
     page.navigateTo();
     page.addNewList(' ');
-    // await
 
     expect(page.getAllLiElement().count()).toBe(3);
   });
@@ -79,7 +76,6 @@ describe('to-do-app App', () => {
   it('should not edit list name if blank space', async() => {
     page.navigateTo();
     const blankName = '';
-    const spacedName = ' ';
     page.editListName(blankName);
 
     const EditedListName = page.getTextContentOf(ToDoManagerCompTag, '#listToDoElement');
@@ -88,12 +84,10 @@ describe('to-do-app App', () => {
 
   it('should not edit list name if blank or only space', async() => {
     page.navigateTo();
-    const blankName = '';
     const spacedName = ' ';
     page.editListName(spacedName);
 
     const EditedListName = page.getTextContentOf(ToDoManagerCompTag, '#listToDoElement');
-
     expect(EditedListName).not.toBe(spacedName);
   });
 

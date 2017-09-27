@@ -30,7 +30,7 @@ export class AppPage {
   }
 
   deleteList() {
-    // get delete button to enter edit list name mode
+    // get delete list button
     const deleteButton = element(by.css('.remove'));
     deleteButton.click();
   }
@@ -38,7 +38,6 @@ export class AppPage {
   addNewList(listName: string) {
     const input = element(by.css('#inputList'));
     input.sendKeys(listName);
-    // get edit button to enter edit list name mode
     const addButton = element(by.css('#addListButton'));
     addButton.click();
   }
@@ -55,5 +54,31 @@ export class AppPage {
   selectFirstList() {
     const firstListElement = element(by.css('#listToDoElement'));
     firstListElement.click();
+  }
+
+  addNewToDo(newToDo: string) {
+    const ToDosCompTag = 'app-to-dos';
+    const input = this.getDOMElement(ToDosCompTag, '#inputNewToDo' );
+    input.sendKeys(newToDo);
+    const addButton = this.getDOMElement(ToDosCompTag, '#addToDoButton' );
+    addButton.click();
+  }
+
+  deleteToDo() {
+    // get delete toDo button
+    const ToDosCompTag = 'app-to-dos';
+    // const deleteButton = this.getDOMElement(ToDosCompTag, '#deleteToDoNotSelect' );
+    const deleteButton = this.getDOMElement(ToDosCompTag, '.remove' );
+    deleteButton.click();
+  }
+
+  editToDoTask(newToDo: string) {
+    const ToDosCompTag = 'app-to-dos';
+    const editButton = this.getDOMElement(ToDosCompTag, '#editButton' );
+    editButton.click();
+    const input = this.getDOMElement(ToDosCompTag, '#inputEdit' );
+    input.sendKeys(newToDo);
+    const editConfirmButton = this.getDOMElement(ToDosCompTag, '#confirmEditButton' );
+    editConfirmButton.click();
   }
 }
