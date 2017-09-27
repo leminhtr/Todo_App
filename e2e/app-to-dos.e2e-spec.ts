@@ -5,10 +5,7 @@ import {count} from 'rxjs/operator/count';
 
 describe('to-do-app App', () => {
   let page: AppPage;
-  const AppCompTag = 'app-root';
-  const ToDoManagerCompTag = 'app-to-do-manager';
-  const ToDosCompTag = 'app-to-dos';
-  const FooterCompTag = 'app-footer';
+  const toDosCompTag = 'app-to-dos';
 
   beforeEach(() => {
     page = new AppPage();
@@ -21,10 +18,10 @@ describe('to-do-app App', () => {
     // select the first themed list of ToDo
     page.selectFirstList();
 
-    expect(page.getDOMElement(ToDosCompTag, '#toDosList').isPresent()).toBe(true);
+    expect(page.getDOMElement(toDosCompTag, '#toDosList').isPresent()).toBe(true);
 
     // should have a Coffee ToDo
-    expect(page.getTextContentOf(ToDosCompTag, '#toDosList')).toContain(firstToDos);
+    expect(page.getTextContentOf(toDosCompTag, '#toDosList')).toContain(firstToDos);
     // should have 3 lists
     expect(page.getToDosList().count()).toBe(3);
   });
@@ -33,7 +30,7 @@ describe('to-do-app App', () => {
     page.navigateTo();
     // page.selectFirstList();
 
-    expect(page.getDOMElement(ToDosCompTag, '#toDosList').isPresent()).toBe(false);
+    expect(page.getDOMElement(toDosCompTag, '#toDosList').isPresent()).toBe(false);
     // should have 3 lists
     expect(page.getAllLiElement().count()).toBe(3);
   });
@@ -89,8 +86,8 @@ describe('to-do-app App', () => {
     const newName = 'toDoEdited';
     page.editToDoTask(newName);
 
-    const EditedToDo = page.getTextContentOf(ToDosCompTag, '#toDosList');
-    expect(EditedToDo).toContain(newName);
+    const EditedFirstToDo = page.getNthToDoTextContent(0);
+    expect(EditedFirstToDo).toContain(newName);
   });
 
   it('should not edit toDo name if blank space', async() => {
@@ -100,8 +97,8 @@ describe('to-do-app App', () => {
     const blankName = '';
     page.editToDoTask(blankName);
 
-    const EditedToDo = page.getTextContentOf(ToDosCompTag, '#toDosList');
-    expect(EditedToDo).not.toContain(blankName);
+    const EditedToDo = page.getNthToDoTextContent(0);
+    expect(EditedToDo).not.toBe(blankName);
   });
 
   it('should not edit toDo name if only space char', async() => {
@@ -110,9 +107,8 @@ describe('to-do-app App', () => {
 
     const spacedName = ' ';
     page.editToDoTask(spacedName);
-
-    const EditedToDo = page.getTextContentOf(ToDosCompTag, '#toDosList');
-    expect(EditedToDo).not.toContain(spacedName);
+    const EditedToDo = page.getNthToDoTextContent(0);
+    expect(EditedToDo).toBe(spacedName);
   });
 
 

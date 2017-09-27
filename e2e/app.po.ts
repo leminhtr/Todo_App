@@ -21,6 +21,13 @@ export class AppPage {
     return element.all(by.css('li'));
   }
 
+  getNthListToDoTextContent(nth: number) {
+    const toDoManagerCompTag = 'app-to-do-manager';
+    return element.all(by.css(toDoManagerCompTag + ' ' + '#ToDoManagerList li')).get(nth).getText();
+  }
+    // return element.all(by.css(toDosCompTag + ' ' + '#toDosList li')).get(nth).getText();
+
+
   getToDoManagerList() {
     return element.all(by.css('#listToDoElement'));
   }
@@ -57,28 +64,33 @@ export class AppPage {
   }
 
   addNewToDo(newToDo: string) {
-    const ToDosCompTag = 'app-to-dos';
-    const input = this.getDOMElement(ToDosCompTag, '#inputNewToDo' );
+    const toDosCompTag = 'app-to-dos';
+    const input = this.getDOMElement(toDosCompTag, '#inputNewToDo' );
     input.sendKeys(newToDo);
-    const addButton = this.getDOMElement(ToDosCompTag, '#addToDoButton' );
+    const addButton = this.getDOMElement(toDosCompTag, '#addToDoButton' );
     addButton.click();
   }
 
   deleteToDo() {
     // get delete toDo button
-    const ToDosCompTag = 'app-to-dos';
-    // const deleteButton = this.getDOMElement(ToDosCompTag, '#deleteToDoNotSelect' );
-    const deleteButton = this.getDOMElement(ToDosCompTag, '.remove' );
+    const toDosCompTag = 'app-to-dos';
+    // const deleteButton = this.getDOMElement(toDosCompTag, '#deleteToDoNotSelect' );
+    const deleteButton = this.getDOMElement(toDosCompTag, '.remove' );
     deleteButton.click();
   }
 
   editToDoTask(newToDo: string) {
-    const ToDosCompTag = 'app-to-dos';
-    const editButton = this.getDOMElement(ToDosCompTag, '#editButton' );
+    const toDosCompTag = 'app-to-dos';
+    const editButton = this.getDOMElement(toDosCompTag, '#editButton' );
     editButton.click();
-    const input = this.getDOMElement(ToDosCompTag, '#inputEdit' );
+    const input = this.getDOMElement(toDosCompTag, '#inputEdit' );
     input.sendKeys(newToDo);
-    const editConfirmButton = this.getDOMElement(ToDosCompTag, '#confirmEditButton' );
+    const editConfirmButton = this.getDOMElement(toDosCompTag, '#confirmEditButton' );
     editConfirmButton.click();
+  }
+
+  getNthToDoTextContent(nth: number) {
+    const toDosCompTag = 'app-to-dos';
+    return element.all(by.css(toDosCompTag + ' ' + '#toDosList li')).get(nth).getText();
   }
 }

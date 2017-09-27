@@ -5,10 +5,7 @@ import {count} from 'rxjs/operator/count';
 
 describe('to-do-app App', () => {
   let page: AppPage;
-  const AppCompTag = 'app-root';
-  const ToDoManagerCompTag = 'app-to-do-manager';
-  const ToDosCompTag = 'app-to-dos';
-  const FooterCompTag = 'app-footer';
+  const toDoManagerCompTag = 'app-to-do-manager';
 
   beforeEach(() => {
     page = new AppPage();
@@ -21,7 +18,7 @@ describe('to-do-app App', () => {
     /**
      * Test to check if ToDoManager list is all being displayed
      */
-    expect(page.getTextContentOf(ToDoManagerCompTag, '#listToDoElement')).toContain(firstListName);
+    expect(page.getTextContentOf(toDoManagerCompTag, '#listToDoElement')).toContain(firstListName);
     // should have 3 lists
     expect(page.getAllLiElement().count()).toBe(3);
   });
@@ -69,7 +66,7 @@ describe('to-do-app App', () => {
     const newName = 'LISTEDITED';
     page.editListName(newName);
 
-    const EditedListName = page.getTextContentOf(ToDoManagerCompTag, '#listToDoElement');
+    const EditedListName = page.getTextContentOf(toDoManagerCompTag, '#listToDoElement');
     expect(EditedListName).toContain(newName);
   });
 
@@ -78,7 +75,7 @@ describe('to-do-app App', () => {
     const blankName = '';
     page.editListName(blankName);
 
-    const EditedListName = page.getTextContentOf(ToDoManagerCompTag, '#listToDoElement');
+    const EditedListName = page.getTextContentOf(toDoManagerCompTag, '#listToDoElement');
     expect(EditedListName).not.toBe(blankName);
   });
 
@@ -87,7 +84,7 @@ describe('to-do-app App', () => {
     const spacedName = ' ';
     page.editListName(spacedName);
 
-    const EditedListName = page.getTextContentOf(ToDoManagerCompTag, '#listToDoElement');
+    const EditedListName = page.getTextContentOf(toDoManagerCompTag, '#listToDoElement');
     expect(EditedListName).not.toBe(spacedName);
   });
 

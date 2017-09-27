@@ -1,10 +1,10 @@
 <div class="ListInfo">
 
-<h3 id="listName">
-  <div *ngIf="selectedList">
+<div *ngIf="selectedList">
+  <h3 id="listName">
     {{selectedList.name}}
-  </div>
-</h3>
+  </h3>
+</div>
 
   <div *ngIf="selectedList">
 <div *ngIf="selectedList.listToDo.length>0 && selectedList.listToDo.length != countNotDone() ">
