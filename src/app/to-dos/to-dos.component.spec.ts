@@ -41,11 +41,11 @@ describe('ToDosComponent', () => {
         AppRoutingModule],
       providers: [{provide : APP_BASE_HREF, useValue: '/'}, ToDoService, InMemoryDataService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    // new ToDo put in a list
+    // new ToDo to put in a list
     mokToDo = new ToDo(1, 'coffee', false);
     mokArrayToDo = new Array<ToDo>();
     mokArrayToDo[0] = mokToDo;
@@ -58,6 +58,7 @@ describe('ToDosComponent', () => {
     fixture = TestBed.createComponent(ToDosComponent);
     de = fixture.debugElement;
     component = fixture.componentInstance;
+
     todoService = de.injector.get(ToDoService) as any;
     component.listToDo = mokListToDo;
 
@@ -66,6 +67,7 @@ describe('ToDosComponent', () => {
       component.todos = mokArrayToDo;
     });
     spyUpdate = spyOn(todoService, 'updateList').and.returnValue(Promise.resolve(null));
+
     fixture.detectChanges();
   });
 
@@ -74,12 +76,13 @@ describe('ToDosComponent', () => {
   });
 
   /**
-   * Test if to todos is initialized with data from service
+   * Test if to todos is initialized with correct data from service
    */
   it('should get todos when initialized', async(() => {
     component.ngOnInit();
     const fakeList = new ToDo(1, 'coffee', false);
     fixture.detectChanges();
+
     fixture.whenStable().then(() => {
       expect(component.todos[0]).toEqual(fakeList);
     });
@@ -88,10 +91,11 @@ describe('ToDosComponent', () => {
   /**
    * deleteToDo unit test
    */
-  it('should delete a ToDo when the trash button is clicked', async(() => {
+  it('should delete a ToDo and make the list empty when the trash button is clicked', async(() => {
     fixture.whenStable().then(() => {
-      const el = de.nativeElement.querySelector('.remove');
-      el.click();
+      const deleteButton = de.nativeElement.querySelector('.remove');
+      deleteButton.click();
+
       fixture.whenStable().then(() => {
         expect(component.todos.length).toBe(0);
 
@@ -108,16 +112,20 @@ describe('ToDosComponent', () => {
       // get edit button to enter edit mode
       const editButton = de.nativeElement.querySelector('#editButton');
       editButton.click();
+
       // when view is stable
       fixture.whenStable().then(() => {
         // detectChanges on input
         fixture.detectChanges();
+
         // get input element and put test value
         const input = de.nativeElement.querySelector('#inputEdit');
         input.value = 'ToDoEdited';
+
         // get edit confirm button to change value
         const editConfirm = de.nativeElement.querySelector('#confirmEditButton');
         editConfirm.click();
+
         // when view is stable
         fixture.whenStable().then(() => {
           expect(component.todos[0].task).toContain('ToDoEdited');
@@ -134,16 +142,19 @@ describe('ToDosComponent', () => {
     fixture.whenStable().then(() => {
       // detectChanges on input
       fixture.detectChanges();
+
       // get input element and put test value
       const input = de.nativeElement.querySelector('#inputNewToDo');
       input.value = 'newToDo';
+
       // get edit button to enter edit list name mode
       const addButton = de.nativeElement.querySelector('#addToDoButton');
       addButton.click();
+
       // when view is stable
       fixture.whenStable().then(() => {
         component.todos.pop();
-        // when view is stable
+
         expect(component.todos.length).toBe(2);
         expect(component.todos[1].task).toContain('newToDo');
       });

@@ -13,7 +13,7 @@ export class InMemoryDataService implements InMemoryDbService {
         { id : 0, task : 'Coffee', IsCompleted: false },
         { id : 1, task : 'Tomato', IsCompleted: true },
         { id : 2, task : 'Bacon', IsCompleted: false}
-        ],
+      ],
         isAllDone: false
       },
       {id : 1, name : 'Party list', listToDo : [

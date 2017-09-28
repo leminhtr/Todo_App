@@ -9,7 +9,7 @@ export class ToDo {
    * @param {boolean} IsCompleted: Is the ToDo completed
    */
   constructor(public id: number,
-  public task: string,
-  public IsCompleted: boolean
+              public task: string,
+              public IsCompleted: boolean
   ) {}
 }

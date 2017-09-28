@@ -24,14 +24,14 @@
             (click)="onSelect(ltd);" (keyup.enter)="onSelect(ltd);" tabindex="0">
 
           <!-- cross list name if all done or not-->
-            <div *ngIf="ltd.isAllDone==true" >
-              <del>
-                <span class="listTDName" id="listDone">{{ltd.name | uppercase}}</span>
-              </del>
-            </div>
-            <div *ngIf="!ltd.isAllDone==true">
-              <span class="listTDName">{{ltd.name | uppercase}}</span>
-            </div>
+          <div *ngIf="ltd.isAllDone==true" >
+            <del>
+              <span class="listTDName" id="listDone">{{ltd.name | uppercase}}</span>
+            </del>
+          </div>
+          <div *ngIf="!ltd.isAllDone==true">
+            <span class="listTDName">{{ltd.name | uppercase}}</span>
+          </div>
 
           <!-- Show edit/delete button if not in editing mode-->
           <div *ngIf="isEditListName!= true">
@@ -61,7 +61,7 @@
 
           <!-- Component: List of todos -->
           <div *ngIf="selectedListToDo == ltd" class="col-lg-5 TDlist pull-right" id="todos">
-           <app-to-dos [listToDo]="selectedListToDo" [listName]="selectedListToDo.name"></app-to-dos>
+            <app-to-dos [listToDo]="selectedListToDo" [listName]="selectedListToDo.name"></app-to-dos>
           </div>
 
         </li>

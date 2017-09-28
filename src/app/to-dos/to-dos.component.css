@@ -55,15 +55,15 @@ span:hover{
   float:right;
   margin-top: 2px;
   margin-right: .8em;
-  //background-color: gray !important;
+//background-color: gray !important;
   color:white;
 }
- .glyphicon-remove-circle{
-   background-color: orangered;
- }
+.glyphicon-remove-circle{
+  background-color: orangered;
+}
 
 #inputEdit{
-background-color: white;
+  background-color: white;
 }
 
 .float-label-control { position: relative; margin-bottom: 1.5em; }
@@ -71,26 +71,41 @@ background-color: white;
 .float-label-control :-moz-placeholder { color: gray; }
 .float-label-control ::-moz-placeholder { color: gray; }
 .float-label-control :-ms-input-placeholder { color: gray;}
-.float-label-control input:hover{background-color: #ffffff; border-radius: 7px;  font-family: Calligraffiti, Arial, Helvetica, sans-serif; color: black}
+.float-label-control input:hover{background-color: #ffffff; border-radius: 7px;
+  font-family: Calligraffiti, Arial, Helvetica, sans-serif; color: black}
 .float-label-control input:-webkit-autofill,
-.float-label-control textarea:-webkit-autofill {  -webkit-box-shadow: 0 0 0 1000px white inset !important; -moz-box-shadow: 0 0 0 1000px white inset !important; box-shadow: 0 0 0 1000px white inset !important; color: black !important;}
-/*.float-label-control textarea:-webkit-autofill {  -webkit-box-shadow: 0 0 0 1000px white inset !important; -moz-box-shadow: 0 0 0 1000px white inset !important; box-shadow: 0 0 0 1000px white inset !important; color: black !important;}*/
-.float-label-control input, .float-label-control textarea, .float-label-control label { font-size: 1.5em; box-shadow: none; -webkit-box-shadow: none; font-family: Calligraffiti, Arial, Helvetica, sans-serif;}
+.float-label-control textarea:-webkit-autofill {  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -moz-box-shadow: 0 0 0 1000px white inset !important;
+  box-shadow: 0 0 0 1000px white inset !important; color: black !important;}
+.float-label-control input, .float-label-control textarea, .float-label-control label { font-size: 1.5em;
+  box-shadow: none; -webkit-box-shadow: none; font-family: Calligraffiti, Arial, Helvetica, sans-serif;}
 .float-label-control input:focus {color: black !important;}
-.float-label-control textarea:focus { box-shadow: none; -webkit-box-shadow: none; border-bottom-width: 2px; padding-bottom: 0; color: black !important;}
+.float-label-control textarea:focus { box-shadow: none; -webkit-box-shadow: none;
+  border-bottom-width: 2px; padding-bottom: 0; color: black !important;}
 .float-label-control textarea:focus { padding-bottom: 4px; color: black; }
 .float-label-control textarea:hover { padding-bottom: 4px; color: black; }
-.float-label-control input, .float-label-control textarea { display: inline-block; width: 75%; padding: 0.1em 0em 1px 0em; border: none; border-radius: 0px; border-bottom: 1px solid #aaa; outline: none; margin: 0px; background: none; }
-.float-label-control textarea { padding: 0.1em 0em 5px 0em;   font-family: Calligraffiti, Arial, Helvetica, sans-serif; color: black;
+.float-label-control input, .float-label-control textarea { display: inline-block; width: 75%;
+  padding: 0.1em 0em 1px 0em; border: none; border-radius: 0px; border-bottom: 1px solid #aaa;
+  outline: none; margin: 0px; background: none; }
+.float-label-control textarea { padding: 0.1em 0em 5px 0em;
+  font-family: Calligraffiti, Arial, Helvetica, sans-serif; color: black;
 }
-.float-label-control label { position: absolute; font-weight: normal; top: -1.0em; left: 0.08em; color: #aaaaaa; z-index: -1; font-size: 0.85em; -moz-animation: float-labels 300ms none ease-out; -webkit-animation: float-labels 300ms none ease-out; -o-animation: float-labels 300ms none ease-out; -ms-animation: float-labels 300ms none ease-out; -khtml-animation: float-labels 300ms none ease-out; animation: float-labels 300ms none ease-out; /* There is a bug sometimes pausing the animation. This avoids that.*/ animation-play-state: running !important; -webkit-animation-play-state: running !important; }
+.float-label-control label { position: absolute; font-weight: normal; top: -1.0em; left: 0.08em;
+  color: #aaaaaa; z-index: -1; font-size: 0.85em; -moz-animation: float-labels 300ms none ease-out;
+  -webkit-animation: float-labels 300ms none ease-out; -o-animation: float-labels 300ms none ease-out;
+  -ms-animation: float-labels 300ms none ease-out; -khtml-animation: float-labels 300ms none ease-out;
+  animation: float-labels 300ms none ease-out; /* There is a bug sometimes pausing the animation. This avoids that.*/
+  animation-play-state: running !important; -webkit-animation-play-state: running !important; }
 .float-label-control input.empty + label,
 .float-label-control textarea.empty + label { top: 0.1em; font-size: 1.5em; animation: none; -webkit-animation: none; }
 .float-label-control input:not(.empty) + label,
 .float-label-control textarea:not(.empty) + label { z-index: 1; }
 .float-label-control input:not(.empty):focus + label,
 .float-label-control textarea:not(.empty):focus + label { color: #aaaaaa; }
-.float-label-control.label-bottom label { -moz-animation: float-labels-bottom 300ms none ease-out; -webkit-animation: float-labels-bottom 300ms none ease-out; -o-animation: float-labels-bottom 300ms none ease-out; -ms-animation: float-labels-bottom 300ms none ease-out; -khtml-animation: float-labels-bottom 300ms none ease-out; animation: float-labels-bottom 300ms none ease-out; }
+.float-label-control.label-bottom label { -moz-animation: float-labels-bottom 300ms none ease-out;
+  -webkit-animation: float-labels-bottom 300ms none ease-out; -o-animation: float-labels-bottom 300ms none ease-out;
+  -ms-animation: float-labels-bottom 300ms none ease-out; -khtml-animation: float-labels-bottom 300ms none ease-out;
+  animation: float-labels-bottom 300ms none ease-out; }
 .float-label-control.label-bottom input:not(.empty) + label,
 .float-label-control.label-bottom textarea:not(.empty) + label { top: 3em; }
 

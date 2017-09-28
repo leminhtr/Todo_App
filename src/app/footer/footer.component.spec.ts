@@ -56,12 +56,15 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
   });
 
+  /**
+   * Create component test
+   */
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   /**
-   * Test if to footer is initialized with selectedList infos
+   * Test if to footer is initialized with correct selectedList Name
    */
   it('should get the name of the selected list when initialized', async(() => {
     component.ngOnInit();

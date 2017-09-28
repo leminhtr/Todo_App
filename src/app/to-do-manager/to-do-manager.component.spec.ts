@@ -38,7 +38,7 @@ describe('ToDoManagerComponent', () => {
         AppRoutingModule],
       providers: [{provide : APP_BASE_HREF, useValue: '/'}, ToDoService, InMemoryDataService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -56,11 +56,14 @@ describe('ToDoManagerComponent', () => {
     fixture.detectChanges();
   });
 
+  /**
+   * Create component test
+   */
   it('should create', () => {
     expect(component).toBeTruthy();
   });
   /**
-   * Test if to toDoManager is initialized with data from service
+   * Test if to toDoManager is initialized with correct data from service
    */
   it('should get toDoManager when initialized', async(() => {
     component.ngOnInit();
@@ -106,7 +109,7 @@ describe('ToDoManagerComponent', () => {
         editConfirm.click();
         // when view is stable
         fixture.whenStable().then(() => {
-            expect(component.toDoManager[0].name).toContain('listEdited');
+          expect(component.toDoManager[0].name).toContain('listEdited');
         });
       });
     });
@@ -130,7 +133,7 @@ describe('ToDoManagerComponent', () => {
       fixture.whenStable().then(() => {
         // when view is stable
         expect(component.toDoManager.length).toBe(2);
-          expect(component.toDoManager[1].name).toContain('newList');
+        expect(component.toDoManager[1].name).toContain('newList');
       });
     });
   }));

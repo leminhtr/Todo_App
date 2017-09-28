@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { ToDo } from '../to-do';
 import { ToDoService } from '../to-do.service';
-import {Router} from '@angular/router';
 import {ListToDo} from '../list-toDo';
 
 @Component({
@@ -19,12 +18,12 @@ export class ToDosComponent implements OnInit {
   todos: ToDo[] = [];
 
   /**
-   * @property {ToDO} selectedToDo: The selected toDo
+   * @property {ToDo} selectedToDo: The selected toDo of the themed list
    */
   selectedToDo: ToDo;
 
   /**
-   * @property {ListToDo} listToDo: The list of ToDo of the themed list, selected by ToDoManagerComponent
+   * @property {ListToDo} listToDo: The themed list of ToDo, selected by ToDoManagerComponent
    */
   @Input() listToDo: ListToDo;
   /**
@@ -35,7 +34,6 @@ export class ToDosComponent implements OnInit {
 
   /**
    * Constructor of ToDoComponent
-   * @constructor
    * @param {ToDoService} todoService: The service to fetch the data from
    */
   constructor(private todoService: ToDoService) {
@@ -43,23 +41,24 @@ export class ToDosComponent implements OnInit {
 
   /**
    * Assign the selectedToDo attribute to the parameter: the selected toDo
-   * @param {ToDo} todo : The list of ToDo of the selected themed list
+   * @param {ToDo} todo: The selected ToDo of the selected themed list
    */
   onSelect(todo: ToDo): void {
     this.selectedToDo = todo;
   }
 
   /**
-   * Get a list of todo from the database using its id
+   * Get the list of todo of a themed list from the database using its id
    * @param idList: The id of the list
    */
-  getToDos(idList): void {  // get data from ToDo service, using its method
-    // sets the component's heroes property to the array of heroes returned by the service.
-    this.todoService.getListToDo(idList).then(list => this.todos = list.listToDo);
+  getToDos(idList): void {
+    // get data from ToDo service, using its method
+    this.todoService.getListToDo(idList)
+      .then(list => this.todos = list.listToDo);
   }
 
   /**
-   * Call the getToDos method to initialize the listToDo attribute
+   * Call the getToDos method to initialize the list of ToDo
    * on Component initialization
    */
   ngOnInit(): void { // get data on component init
@@ -68,33 +67,47 @@ export class ToDosComponent implements OnInit {
 
   /**
    * Add a todo to the existing list and to the database
-   * Create a new toDo of name 'task'; Update the database and the todos list attribute
-   * @param {string} task: The name of the task of the new todo
+   * Create a new toDo of name 'newTask'; Update the database and the todos list attribute
+   * @param {string} newTask: The name of the newTask of the new todo
    */
-  add(task: string): void {
-    task = task.trim(); // Remove whitespace
-    if (!task) {  // if task is undefined then end
+  add(newTask: string): void {
+    // remove whitespace
+    newTask = newTask.trim();
+    // stop if newTask empty string
+    if (!newTask) {
       return;
     }
 
-    if (!this.todos) {  // if the list of todos is undefined
-      this.todos = new Array<ToDo>(); // then create a new array of ToDo
+    // if the list of todos is undefined
+    if (!this.todos) {
+      // then create a new array of ToDo
+      this.todos = new Array<ToDo>();
     }
+
     let newToDo: ToDo; // the new toDo to be created
-    // if the list of toDo is empty
+
+    // if the list of toDo of the themed list is empty
     if (this.listToDo.listToDo.length === 0) {
-      // then create a new toDo of name task, not done and take the next available id
-      newToDo = new ToDo(this.listToDo.listToDo.length, task, false);
-    } else {
-      // else create a new toDo of name task, and not done and and take the next available id
-      newToDo = new ToDo(this.listToDo.listToDo[this.listToDo.listToDo.length - 1].id + 1, task, false);
+      // then create a new toDo of name newTask, not done and take the next available id
+      const nextAvailableId = this.listToDo.listToDo.length;
+      newToDo = new ToDo(nextAvailableId, newTask, false);
+    } else { // else the list of toDo is not empty
+      // create a new toDo of name newTask, and not done and and take the next available id
+      const lastToDo = this.listToDo.listToDo[this.listToDo.listToDo.length - 1];
+      const nextAvailableId = lastToDo.id + 1;
+      newToDo = new ToDo(nextAvailableId, newTask, false);
     }
-    // push it to the list of todos of the listToDo attribute
+
+    // push it to the list of todos of the themed list of toDo
     this.listToDo.listToDo.push(newToDo);
-    // update the database using the service and the the toDo list "todos"
+    // update the database using the service accordingly
     this.todoService.updateList(this.listToDo)
-      .then(list => {
-        this.todos.push(this.listToDo.listToDo[this.listToDo.listToDo.length - 1]);
+      .then(() => {
+        // add the new toDo to the displayed list of toDo
+        const newLastToDo = this.listToDo.listToDo[this.listToDo.listToDo.length - 1];
+        this.todos.push(newLastToDo);
+
+        // remove focus on selected toDo
         this.selectedToDo = null;
       });
   }
@@ -105,107 +118,125 @@ export class ToDosComponent implements OnInit {
    * @param {ToDo} todo: The toDo to be deleted
    */
   deleteToDo(todo: ToDo): void {
+    const numberOfToDos = this.listToDo.listToDo.length;
+
     // Search the todo using its id in the list of todo of listToDo attribute
-    for (let i = 0; i < this.listToDo.listToDo.length; i++) {
+    for (let i = 0; i < numberOfToDos ; i++) {
+      // when the toDo is found from its id
       if (this.listToDo.listToDo[i].id === todo.id) {
-        // delete this todo from the list
+        // delete this toDo from the list of toDo of the themed list
         this.listToDo.listToDo.splice(i, 1);
+        // delete this toDo from the displayed list of ToDo
         this.todos.splice(i, 1);
       }
     }
+
     // Then update the database using the service
     this.todoService
       .updateList(this.listToDo)
       .then(() => {
+        // remove the todo from the displayed list of toDo
         this.todos = this.todos.filter(t => t !== todo);
         if (this.selectedToDo === todo) {
+          // remove focus on selected toDo
           this.selectedToDo = null;
         }
       });
+
     // Check if the list of todos is all done after deletion
     this.isAllDone(true);
-
   }
 
   /**
    * Edit the task of the toDo
-   * @param {ToDo} td: The toDo to be edited
+   * @param {ToDo} td
+   * @param {string} editedTask
    */
   edit(td: ToDo, editedTask: string): void {
+    // remove whitespace
     editedTask = editedTask.trim();
-    // const todoTask = td.task.trim();
+    // stop if newTask empty string
     if (!editedTask) {
       return;
     }
+
     // Search the todo using its id in the list of todo of listToDo attribute
-    for (let i = 0; i < this.todos.length; i++) {
+    const numberOfToDos = this.todos.length;
+    for (let i = 0; i < numberOfToDos ; i++) {
+      // when the toDo is found from its id
       if (this.todos[i].id === td.id) {
+        // update the list of toDo of the themed list
         this.listToDo.listToDo[i].task = editedTask;
+        // update the displayed list of toDo
         this.selectedToDo.task = editedTask;
       }
     }
-    // Then update the database using the service
-    this.todoService.updateList(this.listToDo).then(() => this.selectedToDo = null);
+    // Update the database using the service
+    this.todoService.updateList(this.listToDo)
+    // Then remove focus on selected toDo
+      .then(() => this.selectedToDo = null);
   }
 
   /**
    * Edit the IsCompleted attribute of the toDo
-   * @param {ToDo} td
+   * @param {ToDo} td: The toDo to edit the IsCompleted attribute
    */
   editChecked(td: ToDo): void {
-    // Search the todo using its id in the list of todo of listToDo attribute
     td.IsCompleted = !td.IsCompleted;
-    for (let i = 0; i < this.todos.length; i++) {
+
+    // Search the todo using its id in the list of todo of listToDo attribute
+    const numberOfToDos = this.todos.length;
+    for (let i = 0; i < numberOfToDos ; i++) {
+      // when the toDo is found from its id
       if (this.todos[i].id === td.id) {
+        // Update the list of toDo of the themed list
         this.listToDo.listToDo[i].IsCompleted = td.IsCompleted;
       }
     }
-    // Then update the database using the service
-    this.todoService.updateList(this.listToDo).then(() => this.selectedToDo = null);
+
+    // Update the database using the service
+    this.todoService.updateList(this.listToDo)
+    // Then remove focus on selected toDo
+      .then(() => this.selectedToDo = null);
   }
 
-  // updateTask(todo: ToDo): void {
-  //     for (let i = 0; i < this.todos.length; i++) {
-  //       if (todo.id === this.todos[i].id) {
-  //         this.listToDo.listToDo[i].IsCompleted = todo.IsCompleted;
-  //       }
-  //     }
-  //     this.todoService.updateList(this.listToDo).then(() => this.selectedToDo = null);
-  // }
-
   /**
-   * Check if the list of todo has all of its todos done
-   * @param {boolean} toBeChecked: Is a complete check of the list necessary, or not
+   * Check if the list of todo has all of its toDos done
+   * @param {boolean} toBeChecked: Is a complete check necessary, or not
    */
   isAllDone(toBeChecked: boolean): void {
-    // if check if all done not necessary
+    // if complete check not necessary
     if (!toBeChecked) {
-      this.listToDo.isAllDone = false; // update isAllDone value
+      // update isAllDone value
+      this.listToDo.isAllDone = false;
       this.todoService.updateList(this.listToDo).then(() => 1);
-    } else {
-      // else check for every todo element
+    } else { // else check for every todo element
       let isDone = false;
-      // if the list is empty then list is not all done
-      if (this.todos.length === 0) {
+      const numberOfToDos = this.todos.length;
+      // if the list is empty then list is not done
+      if (numberOfToDos === 0) {
         isDone = false;
       }
       // Check if IsCompleted for every element of the list
-      for (let i = 0; i < this.todos.length; i++) {
+      for (let i = 0; i < numberOfToDos ; i++) {
         if (this.todos[i].IsCompleted) {
           isDone = true;
-        } else {
-          // if at least one todo is not done then false, update the list and end
-          isDone = false;  // else if no todo is not {not done} => return true
-          this.listToDo.isAllDone = isDone; // update isAllDone value
+        } else { // else if at least one todo is not done
+          // then false
+          isDone = false;
+
+          // update the themed list
+          this.listToDo.isAllDone = isDone;
+          // update the database using the service
           this.todoService.updateList(this.listToDo).then(() => 1);
           return; // end
         }
       }
-      // update isAllDone value to the list
+      // else all toDos are done
+      // then update the themed list
       this.listToDo.isAllDone = isDone;
-      // update isAllDone value to the database
+      // update the database using the service
       this.todoService.updateList(this.listToDo).then(() => 1);
-      // }
     }
   }
 
@@ -214,12 +245,14 @@ export class ToDosComponent implements OnInit {
    * @return {number} : The number of todo not done yet
    */
   countNotDone(): number {
-    let n = 0;
-    for (let i = 0 ; i < this.todos.length ; i++ ) {
+    let numberOfNotDoneToDos = 0;
+    const totalNumberOfToDos: number = this.todos.length;
+
+    for (let i = 0 ; i < totalNumberOfToDos ; i++ ) {
       if (this.todos[i].IsCompleted === false) {
-        n++;
+        numberOfNotDoneToDos++;
       }
     }
-    return n;
+    return numberOfNotDoneToDos;
   }
 }

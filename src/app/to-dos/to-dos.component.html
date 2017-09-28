@@ -4,86 +4,86 @@
 
     <!--Show the list name of the list & number of todos & number of done todos -->
     <!-- If a list has been selected then "listName" != empty string '' -->
-      <!--Then show list information-->
-  <div class="row">
-    <div *ngIf="listName != ''" class="listName">
-      <h2>{{listName}}</h2>
-      <!-- Only show list information if the list has elements -->
-      <div *ngIf="todos.length>0 && todos.length != countNotDone()">
-      <p>{{todos.length}} todos and {{countNotDone()}} remaining todos</p>
-      </div>
-    </div>
-
-    <!-- Add new todo form-->
-    <div class="form-group float-label-control inputToDo">
-      <input #todoTask placeholder="What do you want to do?" class="form-control " id="inputNewToDo"
-             (keyup.enter)="add(todoTask.value); todoTask.value=''; isAllDone(false);"/>
-      <!-- Confirm button -->
-      <button type="button" class="btn btn-default btn-circle" id="addToDoButton"
-              (click)="add(todoTask.value); todoTask.value=''; isAllDone(false);">
-        <i class="glyphicon glyphicon-menu-right"></i>
-      </button>
-    </div>
-
-    <!-- Checkbox of ToDo List -->
-  <ul class="list-group col-lg-8 col-sm-2" id="tdCheckbox">
-    <li *ngFor="let td of todos" class="list-group-item"(keyup.enter)="onSelect(td);"
-        (keyup.esc)="selectedToDo=null;" tabindex="0">
-      <!-- Checkbox input -->
-      <input type="checkbox"[(ngModel)]="td.IsCompleted"
-             (click)="editChecked(td); isAllDone(true);" class="custom-checkbox" />
-    </li>
-  </ul>
-
-    <!-- ToDo list -->
-    <ul class="todos list-group col-lg-8 col-sm-5" id="toDosList">
-      <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
-      <li *ngFor="let td of todos" class="list-group-item" id="toDoElement" [class.selected]="td === selectedToDo"
-        (click)="onSelect(td);" (keyup.enter)="onSelect(td);" (keyup.esc)="selectedToDo=null;" tabindex="0">
-
-        <!-- Cross the todo if done -->
-      <div *ngIf="td.IsCompleted">
-       <del><span id="TDCompleted">{{td.task}}</span> </del>
-      </div>
-      <div *ngIf="!td.IsCompleted">
-        <span>{{td.task}}</span>
-      </div>
-        <!-- Edit on selectedToDo -->
-      <div *ngIf="selectedToDo == td" class="clickOnEdit">
-          <input #tdtask placeholder="{{td.task}}"
-                 (keyup.enter)="edit(selectedToDo, tdtask.value);
-                      selectedToDo=null; $event.stopPropagation()"
-                 (keyup.esc)="selectedToDo=null;" id="inputEdit" />
-          <button class="edit btn btn-success btn-circle" id="confirmEditButton"
-                  (click)="edit(selectedToDo, tdtask.value);
-                      selectedToDo=null; $event.stopPropagation()">
-            <i class="glyphicon glyphicon-ok"></i>
-          </button>
-
-          <!-- Delete button on selectedToDo -->
-        <button type="button" class="btn btn-danger btn-circle remove"
-                  (click)="deleteToDo(selectedToDo);  $event.stopPropagation()">
-            <i class="glyphicon glyphicon-trash "></i>
-          </button>
+    <!--Then show list information-->
+    <div class="row">
+      <div *ngIf="listName != ''" class="listName">
+        <h2>{{listName}}</h2>
+        <!-- Only show list information if the list has elements -->
+        <div *ngIf="todos.length>0 && todos.length != countNotDone()">
+          <p>{{todos.length}} todos and {{countNotDone()}} remaining todos</p>
+        </div>
       </div>
 
-        <!-- Show ToDo if nothing is selected or after edit confirm-->
-      <div *ngIf="selectedToDo == null">
-        <!-- Edit button on not selectedToDO-->
-      <button class="edit btn btn-info btn-circle blue-gradient" id="editButton">
-        <i class="glyphicon glyphicon-edit"></i>
-      </button>
-        <!-- Delete button on not selectedToDO-->
-        <button type="button" class="btn btn-danger btn-circle remove"
-                (click)="deleteToDo(td);  $event.stopPropagation()">
-          <i class="glyphicon glyphicon-trash "></i>
+      <!-- Add new todo form-->
+      <div class="form-group float-label-control inputToDo">
+        <input #todoTask placeholder="What do you want to do?" class="form-control " id="inputNewToDo"
+               (keyup.enter)="add(todoTask.value); todoTask.value=''; isAllDone(false);"/>
+        <!-- Confirm button -->
+        <button type="button" class="btn btn-default btn-circle" id="addToDoButton"
+                (click)="add(todoTask.value); todoTask.value=''; isAllDone(false);">
+          <i class="glyphicon glyphicon-menu-right"></i>
         </button>
-
       </div>
-    </li>
-  </ul>
-  </div>
 
-</div>
+      <!-- Checkbox of ToDo List -->
+      <ul class="list-group col-lg-8 col-sm-2" id="tdCheckbox">
+        <li *ngFor="let td of todos" class="list-group-item"(keyup.enter)="onSelect(td);"
+            (keyup.esc)="selectedToDo=null;" tabindex="0">
+          <!-- Checkbox input -->
+          <input type="checkbox"[(ngModel)]="td.IsCompleted"
+                 (click)="editChecked(td); isAllDone(true);" class="custom-checkbox" />
+        </li>
+      </ul>
+
+      <!-- ToDo list -->
+      <ul class="todos list-group col-lg-8 col-sm-5" id="toDosList">
+        <!--When td === selectedTodo then li selected element is of CSS class "selected" -->
+        <li *ngFor="let td of todos" class="list-group-item" id="toDoElement" [class.selected]="td === selectedToDo"
+            (click)="onSelect(td);" (keyup.enter)="onSelect(td);" (keyup.esc)="selectedToDo=null;" tabindex="0">
+
+          <!-- Cross the todo if done -->
+          <div *ngIf="td.IsCompleted">
+            <del><span id="TDCompleted">{{td.task}}</span> </del>
+          </div>
+          <div *ngIf="!td.IsCompleted">
+            <span>{{td.task}}</span>
+          </div>
+          <!-- Edit on selectedToDo -->
+          <div *ngIf="selectedToDo == td" class="clickOnEdit">
+            <input #tdtask placeholder="{{td.task}}"
+                   (keyup.enter)="edit(selectedToDo, tdtask.value);
+                      selectedToDo=null; $event.stopPropagation()"
+                   (keyup.esc)="selectedToDo=null;" id="inputEdit" />
+            <button class="edit btn btn-success btn-circle" id="confirmEditButton"
+                    (click)="edit(selectedToDo, tdtask.value);
+                      selectedToDo=null; $event.stopPropagation()">
+              <i class="glyphicon glyphicon-ok"></i>
+            </button>
+
+            <!-- Delete button on selectedToDo -->
+            <button type="button" class="btn btn-danger btn-circle remove"
+                    (click)="deleteToDo(selectedToDo);  $event.stopPropagation()">
+              <i class="glyphicon glyphicon-trash "></i>
+            </button>
+          </div>
+
+          <!-- Show ToDo if nothing is selected or after edit confirm-->
+          <div *ngIf="selectedToDo == null">
+            <!-- Edit button on not selectedToDO-->
+            <button class="edit btn btn-info btn-circle blue-gradient" id="editButton">
+              <i class="glyphicon glyphicon-edit"></i>
+            </button>
+            <!-- Delete button on not selectedToDO-->
+            <button type="button" class="btn btn-danger btn-circle remove"
+                    (click)="deleteToDo(td);  $event.stopPropagation()">
+              <i class="glyphicon glyphicon-trash "></i>
+            </button>
+
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
 </div>
 

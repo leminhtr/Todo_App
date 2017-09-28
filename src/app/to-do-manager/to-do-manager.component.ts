@@ -26,15 +26,19 @@ export class ToDoManagerComponent implements OnInit {
    */
   isEditListName: false;
 
-  constructor(
-    private todoService: ToDoService) {}
+  /**
+   * @constructor Constructor of ToDoManager
+   * @param {ToDoService} todoService: The service to get the data from
+   */
+  constructor(private todoService: ToDoService) {}
 
   /** Get the list of ToDo from the service
    * Initialize the toDoManager attribute
    */
-  getToDoManager(): void {  // get data from ToDo service, using its method
-    this.todoService.getToDoManager().then(TDManager => this.toDoManager = TDManager);
-    // this.onSelect(this.toDoManager[0]);
+  getToDoManager(): void {
+    // get data from ToDo service, using its method
+    this.todoService.getToDoManager()
+      .then(TDManager => this.toDoManager = TDManager);
   }
 
   /**
@@ -56,25 +60,29 @@ export class ToDoManagerComponent implements OnInit {
   }
 
   /**
-   * Seek if a name of list already exists
+   * Seek if a name of list already exists (Case insensitive)
    * @param {string} listName: The name of the list to be checked
    * @return {boolean}: Duplicate or not.
    */
   isDuplicateListName(listName: string): boolean {
     for (let i = 0 ; i < this.toDoManager.length ; i++) {
+      // make the boolean test be case insensitive
       if (this.toDoManager[i].name.toLowerCase() === listName.toLowerCase()) {
         return true;
       }
     }
     return false;
   }
+
   /**
    * Add a new list to the existing list of themed list and to the database
    * Create a list of name 'listName'; Update the database and the toDoManager list attribute
    * @param {string} listName : The name of the new themed list to create
    */
   addList(listName: string): void {
+    // remove whitespace
     listName = listName.trim();
+    // stop if listName empty
     if (!listName) {
       return;
     }
@@ -82,11 +90,15 @@ export class ToDoManagerComponent implements OnInit {
       alert('This list of To Do already exists.');
       return;
     }
-    this.todoService.createListToDo(listName) // if listName not empty then todoService creates a list and returns it as ListToDo
+    // if listName not empty and not duplicate then todoService creates a list and returns it as ListToDo
+    this.todoService.createListToDo(listName)
       .then(listToDo => {
-        listToDo.listToDo = new Array<ToDo>();  // init the list
-        this.toDoManager.push(listToDo);  // add it to the toDoManager
-        this.selectedListToDo = null; // remove the focus on the selected list
+        // init the list of list of todo
+        listToDo.listToDo = new Array<ToDo>();
+        // add it to the toDoManager
+        this.toDoManager.push(listToDo);
+        // remove the focus on the selected list
+        this.selectedListToDo = null;
       });
   }
 
@@ -98,11 +110,14 @@ export class ToDoManagerComponent implements OnInit {
   deleteList(list: ListToDo): void {
     // exit edit mode if in edit mode
     this.isEditListName = false;
+    // delete the list from the database using todo service
     this.todoService
       .deleteListToDo(list.id)
       .then(() => {
+      // remove the list from the displayed themed list
         this.toDoManager = this.toDoManager.filter(l => l !== list);
         if (this.selectedListToDo === list) {
+          // remove the selected list focus
           this.selectedListToDo = null;
         }
       });
