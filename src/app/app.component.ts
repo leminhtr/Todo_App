@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
    * Title of the App
    * @type {string}
    */
-  private title = 'TODO App';
+  title = 'TODO App';
 
   /** Default constructor
    * @constructor

@@ -30,7 +30,7 @@
         <li *ngFor="let td of todos" class="list-group-item"(keyup.enter)="onSelect(td);"
             (keyup.esc)="selectedToDo=null;" tabindex="0">
           <!-- Checkbox input -->
-          <input type="checkbox"[(ngModel)]="td.IsCompleted"
+          <input type="checkbox" [(ngModel)]="td.IsCompleted" id="inputCheckBox"
                  (click)="editChecked(td); isAllDone(true);" class="custom-checkbox" />
         </li>
       </ul>
@@ -41,9 +41,9 @@
         <li *ngFor="let td of todos" class="list-group-item" id="toDoElement" [class.selected]="td === selectedToDo"
             (click)="onSelect(td);" (keyup.enter)="onSelect(td);" (keyup.esc)="selectedToDo=null;" tabindex="0">
 
-          <!-- Cross the todo if done -->
+          <!-- Cross out the todo if done -->
           <div *ngIf="td.IsCompleted">
-            <del><span id="TDCompleted">{{td.task}}</span> </del>
+            <del id="crossedOutToDo"><span id="TDCompleted">{{td.task}}</span> </del>
           </div>
           <div *ngIf="!td.IsCompleted">
             <span>{{td.task}}</span>

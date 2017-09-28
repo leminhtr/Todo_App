@@ -23,9 +23,9 @@
         <li *ngFor="let ltd of toDoManager" class="list-group-item" id="listToDoElement" [class.selected]="ltd === selectedListToDo"
             (click)="onSelect(ltd);" (keyup.enter)="onSelect(ltd);" tabindex="0">
 
-          <!-- cross list name if all done or not-->
+          <!-- cross out list name if all done or not-->
           <div *ngIf="ltd.isAllDone==true" >
-            <del>
+            <del id="crossedListToDo">
               <span class="listTDName" id="listDone">{{ltd.name | uppercase}}</span>
             </del>
           </div>

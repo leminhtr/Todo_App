@@ -6,6 +6,7 @@ import {count} from 'rxjs/operator/count';
 describe('to-do-app app-to-do-manager', () => {
   let page: AppPage;
   const toDoManagerCompTag = 'app-to-do-manager';
+  const toDosCompTag = 'app-to-dos';
 
   beforeEach(() => {
     page = new AppPage();
@@ -104,6 +105,34 @@ describe('to-do-app app-to-do-manager', () => {
 
     const EditedListName = page.getTextContentOf(toDoManagerCompTag, '#listToDoElement');
     expect(EditedListName).not.toBe(spacedName);
+  });
+
+  /**
+   * Test cross a list when all done
+   */
+  it('should cross out a list name when all checkbox is checked', async() => {
+    page.navigateTo();
+    page.selectFirstList();
+
+    // get the all the checkbox
+    const AllCheckboxToDo = page.getAllCheckboxToDo();
+
+    AllCheckboxToDo.each(function(checkboxToDo) {
+      checkboxToDo.click();
+    });
+      expect(page.getDOMElement(toDoManagerCompTag, '#crossedListToDo').isPresent()).toBe(true);
+  });
+
+  it('should not cross out a list name when at least one checkbox is unchecked', async() => {
+    page.navigateTo();
+    page.selectFirstList();
+
+    if (page.isThereUncheckedCheckbox() === true) {
+      // expect(5).toBe(6);
+      expect(page.getDOMElement(toDoManagerCompTag, '#crossedListToDo').isPresent()).not.toBe(true);
+    } else {
+      expect(page.getDOMElement(toDoManagerCompTag, '#crossedListToDo').isPresent()).toBe(true);
+    }
   });
 
 });

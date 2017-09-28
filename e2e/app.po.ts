@@ -1,4 +1,5 @@
 import { browser, by, element } from 'protractor';
+import {totalmem} from "os";
 
 export class AppPage {
   navigateTo() {
@@ -25,7 +26,7 @@ export class AppPage {
     const toDoManagerCompTag = 'app-to-do-manager';
     return element.all(by.css(toDoManagerCompTag + ' ' + '#ToDoManagerList li')).get(nth).getText();
   }
-    // return element.all(by.css(toDosCompTag + ' ' + '#toDosList li')).get(nth).getText();
+  // return element.all(by.css(toDosCompTag + ' ' + '#toDosList li')).get(nth).getText();
 
 
   getToDoManagerList() {
@@ -92,5 +93,70 @@ export class AppPage {
   getNthToDoTextContent(nth: number) {
     const toDosCompTag = 'app-to-dos';
     return element.all(by.css(toDosCompTag + ' ' + '#toDosList li')).get(nth).getText();
+  }
+
+  getNthCheckboxToDo(nth: number) {
+    const toDosCompTag = 'app-to-dos';
+    return element.all(by.css(toDosCompTag + ' ' + '#tdCheckbox li [type="checkbox"]')).get(nth);
+  }
+
+  getAllCheckboxToDo() {
+    const toDosCompTag = 'app-to-dos';
+    return element.all(by.css(toDosCompTag + ' ' + '#tdCheckbox li [type="checkbox"]'));
+  }
+
+  // getNumberOfToDos(): number {
+  //   let totalNumberOfTodos: number;
+  //   this.getToDosList().count()
+  //     .then(function (numberOfToDos: number) {
+  //       return numberOfToDos;
+  //     });
+  // }
+  getFirstUncheckedCheckbox(): number {
+    let firstUncheckedCheckbox = -1;
+    const self = this;
+    this.getToDosList().count()
+      .then(function(totalNumberOfToDos) {
+        for (let i = 0 ; i < totalNumberOfToDos ; i++) {
+          let nthCheckbox = self.getNthCheckboxToDo(i);
+          nthCheckbox.isSelected()
+            .then(function (checkboxValue) {
+              // if a checkbox is unchecked
+              if (checkboxValue === false) {
+                // return its position (being the first position)
+                firstUncheckedCheckbox = i;
+                return firstUncheckedCheckbox;
+              }
+            });
+        }
+        return firstUncheckedCheckbox;
+      });
+
+    // if all checkbox are checked
+    return firstUncheckedCheckbox;
+  }
+
+  isThereUncheckedCheckbox(): boolean {
+    let isThereUnchecked = false;
+    const self = this;
+    this.getToDosList().count()
+      .then(function(totalNumberOfToDos) {
+        for (let i = 0 ; i < totalNumberOfToDos ; i++) {
+          self.getNthCheckboxToDo(i).isSelected()
+            .then(function (checkboxValue) {
+              // if a checkbox is unchecked
+              if (checkboxValue === false) {
+                // return its position (being the first position)
+                // expect(4).toBe(5);
+                isThereUnchecked = true;
+                return isThereUnchecked;
+              }
+            });
+        }
+        return isThereUnchecked;
+      });
+
+    // if all checkbox are checked
+    return isThereUnchecked;
   }
 }

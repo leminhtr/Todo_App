@@ -134,6 +134,13 @@ export class ToDoManagerComponent implements OnInit {
     if (!listName) {
       return;
     }
+
+    if (this.isDuplicateListName(listName)) {
+      alert('This list of To Do already exists. \n' +
+        'Edit the other list name or choose another name.');
+      this.isEditListName = false;
+      return;
+    }
     // else edit the name
     this.selectedListToDo.name = listName;
     // exit edit mode

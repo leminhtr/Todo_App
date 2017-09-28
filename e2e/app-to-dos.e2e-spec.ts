@@ -1,5 +1,5 @@
 import { AppPage } from './app.po';
-import {browser, by, element} from 'protractor';
+import {browser, by, element, protractor} from 'protractor';
 import {async} from '@angular/core/testing';
 import {count} from 'rxjs/operator/count';
 
@@ -109,6 +109,31 @@ describe('to-do-app app-to-dos', () => {
     page.editToDoTask(spacedName);
     const EditedToDo = page.getNthToDoTextContent(0);
     expect(EditedToDo).not.toBe(spacedName);
+  });
+
+  /**
+   * Test for editChecked
+   */
+  it('should cross out the toDo when checkbox is checked', async() => {
+    page.navigateTo();
+    page.selectFirstList();
+
+    // get the first checkbox
+    const firstCheckboxToDo = page.getNthCheckboxToDo(0);
+
+    firstCheckboxToDo.isSelected()
+      .then(function (beforeCheckboxValue) {
+      // click on checkbox
+      firstCheckboxToDo.click();
+
+      if (beforeCheckboxValue === false) {
+        // toDo should be crossed out if toDo was not checked
+        expect(page.getDOMElement(toDosCompTag, '#crossedOutToDo').isPresent()).toBe(true);
+      } else {
+        // toDo should not be crossed out if toDo was not checked
+        expect(page.getDOMElement(toDosCompTag, '#crossedOutToDo').isPresent()).toBe(false);
+      }
+    });
   });
 
 
