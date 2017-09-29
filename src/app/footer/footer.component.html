@@ -1,0 +1,21 @@
+<div class="ListInfo">
+
+  <!-- Selected list name -->
+  <div *ngIf="selectedList">
+    <h3 id="listName">
+      {{selectedList.name}}
+    </h3>
+  </div>
+
+  <!-- Selected list infos -->
+  <div *ngIf="selectedList">
+    <div *ngIf="selectedList.listToDo.length>0 && selectedList.listToDo.length != countNotDone() ">
+      <p>{{selectedList.listToDo.length}} todos and {{countNotDone()}} remaining todos -  ({{percentDone()}} %)</p>
+    </div>
+  </div>
+
+  <div class="refLink">
+    <a href="https://todoapp-23862.firebaseapp.com/overview.html">Documentation</a>
+  </div>
+
+</div>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ToDo } from './to-do';
 import { ToDoService } from './to-do.service';
-import { ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +9,21 @@ import { ParamMap } from '@angular/router';
   providers: [ToDoService]
 })
 export class AppComponent implements OnInit {
-  title = 'To Do App';
+  /**
+   * Title of the App
+   * @type {string}
+   */
+  title = 'TODO App';
+
+  /** Default constructor
+   * @constructor
+   */
   constructor() { }
 
+  /**
+   * ngOnInit
+   */
   ngOnInit() {
   }
 
-
 }
-
-
-
-
