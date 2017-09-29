@@ -27,7 +27,6 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
-    ClickOutsideModule
   ],
   providers: [ToDoService],
   bootstrap: [AppComponent]
